@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Evennt_management
 {
-    public partial class Form2 : Form
+    public partial class Register : Form
     {
-        public Form2()
+        public Register()
         {
             InitializeComponent();
         }
@@ -49,7 +49,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+            Login form = new Login();
             form.Show();
             this.Hide();
         }

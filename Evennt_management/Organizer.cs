@@ -34,8 +34,8 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var Veiw_Events = new Veiw_Events();
-            Veiw_Events.Show();
+            var Veiw = new Veiw_Events(this);
+            Veiw.Show();
             this.Hide();
 
         }

@@ -1,8 +1,8 @@
 namespace Evennt_management
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -35,7 +35,7 @@ namespace Evennt_management
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form2 form = new Form2();
+            Register form = new Register();
             form.Show();
             this.Hide();
         }

@@ -21,7 +21,6 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Show the previous form and close the current one...
             _previousForm.Show();
             this.Close();
         }
