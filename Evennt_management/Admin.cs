@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace Evennt_management
 {
-    internal class Participant:Person,Validations
+    internal class Admin:Person,Validations
     {
-
-        public Participant()
+        public Admin()
         {
             
         }
-
-        public void JoinEvent() { }
-
-
 
         public void Login() { }
         public void Logout() { }
         public void Register() { }
         public void Veiw_details() { }
         public void Change_details() { }
-
-
-
 
     }
 }

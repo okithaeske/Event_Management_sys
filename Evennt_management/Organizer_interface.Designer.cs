@@ -1,6 +1,6 @@
 ﻿namespace Evennt_management
 {
-    partial class Organizer
+    partial class Organizer_interface
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Organizer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Organizer_interface));
             bindingSource1 = new BindingSource(components);
             panel1 = new Panel();
             panel2 = new Panel();

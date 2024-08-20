@@ -1,6 +1,6 @@
 ﻿namespace Evennt_management
 {
-    partial class Participant
+    partial class Participant_interface
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Participant));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Participant_interface));
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             button4 = new Button();
