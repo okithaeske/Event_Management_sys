@@ -122,6 +122,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(216, 27);
             textBox1.TabIndex = 7;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -129,6 +130,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(216, 27);
             textBox2.TabIndex = 8;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox3
             // 
@@ -136,6 +138,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(216, 27);
             textBox3.TabIndex = 9;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox4
             // 
@@ -143,6 +146,7 @@
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(216, 27);
             textBox4.TabIndex = 10;
+            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox5
             // 
@@ -158,6 +162,7 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(216, 27);
             textBox6.TabIndex = 12;
+            textBox6.TextChanged += textBox6_TextChanged;
             // 
             // panel1
             // 
@@ -193,7 +198,7 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // Form2
+            // Register
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -201,7 +206,7 @@
             ClientSize = new Size(445, 564);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form2";
+            Name = "Register";
             Text = "Form2";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

@@ -9,7 +9,7 @@ namespace Evennt_management
     internal class Participant:Person,Validations
     {
 
-        public Participant()
+        public Participant(string name, int age, string id, string username, string password, string description) : base(name, age, id, username, password, description)
         {
             
         }

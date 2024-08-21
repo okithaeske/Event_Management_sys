@@ -8,7 +8,7 @@ namespace Evennt_management
 {
     internal class Admin:Person,Validations
     {
-        public Admin()
+        public Admin(string name, int age, string id, string username, string password, string description):base(name,age,id,username,password,description)
         {
             
         }
