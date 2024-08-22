@@ -1,9 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Evennt_management
 {
@@ -166,6 +168,33 @@ namespace Evennt_management
                 }
             }
 
+
+        }
+
+
+        public static void VeiwData(DataGridView datagrid)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+                try
+                {
+                    connection.Open();
+                    MySqlCommand com = new MySqlCommand();
+                    com.Connection = connection;
+                    string query = "SELECT * FROM event_info";
+                    com.CommandText = query;
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(com);
+                    DataTable table = new DataTable();
+                    da.Fill(table); 
+                    datagrid.DataSource = table;
+                    connection.Close();
+                }
+            
+                 catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message); 
+                }
 
         }
 

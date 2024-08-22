@@ -32,7 +32,7 @@ namespace Evennt_management
 
         private void Veiw_Events_Load(object sender, EventArgs e)
         {
-
+            Database.VeiwData(dataGridView1);
         }
     }
 }

@@ -45,9 +45,6 @@ namespace Evennt_management
             Database.CreateEvent(date, place, price, quantity, name, organizer);
 
 
-
-
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
