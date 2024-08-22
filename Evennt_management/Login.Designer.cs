@@ -67,6 +67,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(202, 27);
             textBox1.TabIndex = 2;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -124,7 +125,7 @@
             panel1.Size = new Size(411, 428);
             panel1.TabIndex = 8;
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -140,7 +141,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form1";
+            Name = "Login";
             Text = "Login";
             Load += Form1_Load;
             ResumeLayout(false);

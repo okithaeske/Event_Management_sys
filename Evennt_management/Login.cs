@@ -42,6 +42,15 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string uname = textBox1.Text;
+            string password = textBox2.Text;
+
+            Database.getUser(uname, password, this);
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

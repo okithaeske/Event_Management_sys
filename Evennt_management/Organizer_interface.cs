@@ -39,5 +39,13 @@ namespace Evennt_management
             this.Hide();
 
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
     }
 }

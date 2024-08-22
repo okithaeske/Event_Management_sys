@@ -60,6 +60,81 @@ namespace Evennt_management
 
         }
 
+        public static void getUser(string username, string password, Form f1)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT Role FROM user_info WHERE Username = @Username AND Password = @Password";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                   
+
+                    string role = cmd.ExecuteScalar()?.ToString();
+
+                    if (!string.IsNullOrEmpty(role))
+                    {
+                        switch (role.ToLower())
+                        {
+                            case "admin":
+                                MessageBox.Show("Login successful as Admin!");
+                                Admin_interface formAdmin = new Admin_interface();
+                                formAdmin.Show();
+                                break;
+
+                            case "organizer":
+                                MessageBox.Show("Login successful as Organizer!");
+                                Organizer_interface formOrganizer = new Organizer_interface();
+                                formOrganizer.Show();
+                                break;
+
+                            case "participant":
+                                MessageBox.Show("Login successful as Participant!");
+                                Participant_interface formParticipant = new Participant_interface();
+                                formParticipant.Show();
+                                break;
+
+                            default:
+                                MessageBox.Show("Unknown role detected.");
+                                break;
+                        }
+                        f1.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username or password.");
+                    }
+
+                    connection.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
