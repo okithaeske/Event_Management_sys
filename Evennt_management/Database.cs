@@ -118,6 +118,56 @@ namespace Evennt_management
                 }
             }
         }
+          
+
+        public static void CreateEvent(string date, string place, int price, int quantity, string name, string organizer)
+        {
+            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string query = "INSERT INTO event_info (Event_Name,Date_Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            { 
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@event", name);
+                        cmd.Parameters.AddWithValue("@date", date);
+                        cmd.Parameters.AddWithValue("@place",place);
+                        cmd.Parameters.AddWithValue("@price",price);
+                        cmd.Parameters.AddWithValue("@quantity",quantity);
+                        cmd.Parameters.AddWithValue("@organizer",organizer);
+
+
+                        // Execute the command
+                        int result = cmd.ExecuteNonQuery();
+
+                        if (result == 1)
+                        {
+                            MessageBox.Show("Event created successfuly!");
+                           
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("unsuccessful");
+
+                        }
+
+
+                    }
+                    connection.Close();
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+
+
+        }
 
 
 

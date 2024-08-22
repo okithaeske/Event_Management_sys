@@ -47,5 +47,12 @@ namespace Evennt_management
             login.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CreateEvent_interface createEvent_Interface = new CreateEvent_interface();
+            createEvent_Interface.Show();
+            this.Hide();
+        }
     }
 }
