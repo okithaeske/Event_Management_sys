@@ -43,7 +43,7 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            textBox2 = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,8 +52,8 @@
             panel1.BackColor = Color.LavenderBlush;
             panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(textBox6);
             panel1.Controls.Add(textBox5);
             panel1.Controls.Add(textBox4);
@@ -206,13 +206,13 @@
             label7.TabIndex = 6;
             label7.Text = "Quantity";
             // 
-            // dateTimePicker1
+            // textBox2
             // 
-            dateTimePicker1.Location = new Point(187, 239);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(249, 30);
-            dateTimePicker1.TabIndex = 13;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            textBox2.Location = new Point(187, 236);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(249, 30);
+            textBox2.TabIndex = 15;
+            textBox2.TextChanged += textBox2_TextChanged_1;
             // 
             // CreateEvent_interface
             // 
@@ -247,6 +247,6 @@
         private TextBox textBox3;
         private TextBox textBox1;
         private Button button1;
-        private DateTimePicker dateTimePicker1;
+        private TextBox textBox2;
     }
 }

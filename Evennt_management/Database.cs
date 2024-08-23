@@ -11,10 +11,10 @@ namespace Evennt_management
 {
     internal class Database
     {
-        public static void register(string name, int age, string role,string id,string username,string password,Form f1)
+        public static void register(string name, int age, string role,string username,string password,Form f1)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
-            string query = "INSERT INTO user_info (Name,Age,Role,ID,Username,Password) VALUES (@name,@age,@role,@id,@username,@password)";
+            string query = "INSERT INTO user_info (Name,Age,Role,Username,Password) VALUES (@name,@age,@role,@username,@password)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -25,7 +25,6 @@ namespace Evennt_management
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@age", age);
                         cmd.Parameters.AddWithValue("@role", role);
-                        cmd.Parameters.AddWithValue("@id", id);
                         cmd.Parameters.AddWithValue("@username", username);
                         cmd.Parameters.AddWithValue("@password", password);
 
@@ -125,7 +124,7 @@ namespace Evennt_management
         public static void CreateEvent(string date, string place, int price, int quantity, string name, string organizer)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
-            string query = "INSERT INTO event_info (Event_Name,Date_Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
+            string query = "INSERT INTO createevent (Name,Date,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             { 
                 try
@@ -181,7 +180,7 @@ namespace Evennt_management
                     connection.Open();
                     MySqlCommand com = new MySqlCommand();
                     com.Connection = connection;
-                    string query = "SELECT * FROM event_info";
+                    string query = "SELECT * FROM createevent";
                     com.CommandText = query;
 
                     MySqlDataAdapter da = new MySqlDataAdapter(com);

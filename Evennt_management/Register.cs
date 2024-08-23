@@ -52,11 +52,10 @@ namespace Evennt_management
             string name = textBox1.Text;
             int age = Convert.ToInt32(textBox2.Text);
             string role = textBox3.Text;
-            string id = textBox4.Text;
             string userName = textBox5.Text;
             string password = textBox6.Text;
 
-            Database.register(name,age,role,id,userName,password,this);
+            Database.register(name,age,role,userName,password,this);
 
 
         }

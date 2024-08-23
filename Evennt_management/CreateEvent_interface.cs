@@ -37,7 +37,7 @@ namespace Evennt_management
         {
             string name = textBox1.Text;
             string organizer = textBox4.Text;
-            string date = dateTimePicker1.Value.ToString();
+            string date = textBox2.Text;
             string place = textBox5.Text;
             int price = Convert.ToInt32(textBox3.Text);
             int quantity = Convert.ToInt32(textBox6.Text);
@@ -82,7 +82,7 @@ namespace Evennt_management
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
         {
 
         }

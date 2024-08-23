@@ -31,14 +31,12 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
-            textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
             panel1 = new Panel();
@@ -77,20 +75,10 @@
             label3.Text = "Role";
             label3.Click += label3_Click;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(18, 192);
-            label4.Name = "label4";
-            label4.Size = new Size(24, 20);
-            label4.TabIndex = 3;
-            label4.Text = "ID";
-            label4.Click += label4_Click;
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 224);
+            label5.Location = new Point(18, 200);
             label5.Name = "label5";
             label5.Size = new Size(75, 20);
             label5.TabIndex = 4;
@@ -99,7 +87,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(18, 260);
+            label6.Location = new Point(18, 244);
             label6.Name = "label6";
             label6.Size = new Size(70, 20);
             label6.TabIndex = 5;
@@ -140,17 +128,9 @@
             textBox3.TabIndex = 9;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(128, 185);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(216, 27);
-            textBox4.TabIndex = 10;
-            textBox4.TextChanged += textBox4_TextChanged;
-            // 
             // textBox5
             // 
-            textBox5.Location = new Point(128, 221);
+            textBox5.Location = new Point(128, 200);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(216, 27);
             textBox5.TabIndex = 11;
@@ -158,7 +138,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(128, 257);
+            textBox6.Location = new Point(128, 241);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(216, 27);
             textBox6.TabIndex = 12;
@@ -178,8 +158,6 @@
             panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox5);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBox2);
             panel1.Location = new Point(40, 57);
@@ -218,14 +196,12 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Label label4;
         private Label label5;
         private Label label6;
         private Label label7;
         private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
-        private TextBox textBox4;
         private TextBox textBox5;
         private TextBox textBox6;
         private Panel panel1;
