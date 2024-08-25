@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateEvent_interface));
             panel1 = new Panel();
+            textBox2 = new TextBox();
             button1 = new Button();
             textBox6 = new TextBox();
             textBox5 = new TextBox();
@@ -43,7 +44,7 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            textBox2 = new TextBox();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             panel1.BackColor = Color.LavenderBlush;
             panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(textBox6);
@@ -72,6 +74,14 @@
             panel1.Size = new Size(941, 519);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(187, 236);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(249, 30);
+            textBox2.TabIndex = 15;
+            textBox2.TextChanged += textBox2_TextChanged_1;
             // 
             // button1
             // 
@@ -206,13 +216,16 @@
             label7.TabIndex = 6;
             label7.Text = "Quantity";
             // 
-            // textBox2
+            // linkLabel1
             // 
-            textBox2.Location = new Point(187, 236);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(249, 30);
-            textBox2.TabIndex = 15;
-            textBox2.TextChanged += textBox2_TextChanged_1;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(74, 449);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(48, 23);
+            linkLabel1.TabIndex = 1;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // CreateEvent_interface
             // 
@@ -248,5 +261,6 @@
         private TextBox textBox1;
         private Button button1;
         private TextBox textBox2;
+        private LinkLabel linkLabel1;
     }
 }

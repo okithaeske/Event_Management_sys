@@ -106,6 +106,7 @@
             button3.TabIndex = 1;
             button3.Text = "Register ";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button1
             // 
@@ -163,7 +164,7 @@
             panel3.TabIndex = 1;
             panel3.Paint += panel3_Paint;
             // 
-            // Participant
+            // Participant_interface
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -174,7 +175,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Participant";
+            Name = "Participant_interface";
             Text = "Participant";
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

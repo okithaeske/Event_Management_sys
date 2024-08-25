@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Evennt_management
 {
@@ -146,7 +147,9 @@ namespace Evennt_management
                         if (result == 1)
                         {
                             MessageBox.Show("Event created successfuly!");
-                           
+
+                            CreateTableForEvent(name);
+
 
                         }
                         else
@@ -169,6 +172,40 @@ namespace Evennt_management
 
 
         }
+
+
+        public static void CreateTableForEvent(string tableName)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string createTableQuery = $@"
+            CREATE TABLE `{tableName}` (
+                Id INT PRIMARY KEY AUTO_INCREMENT,
+                Name NVARCHAR(100) NOT NULL,
+                Age INT NOT NULL,
+                Price INT NOT NULL
+            );
+        ";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Create the table within the existing database
+                    using (MySqlCommand createTableCmd = new MySqlCommand(createTableQuery, connection))
+                    {
+                        createTableCmd.ExecuteNonQuery();
+                        MessageBox.Show($"Table '{tableName}' with columns Name, Age, and Price created successfully.");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error creating table: " + ex.Message);
+                }
+            }
+        }
+
 
 
         public static void VeiwData(DataGridView datagrid)
@@ -195,6 +232,52 @@ namespace Evennt_management
                     MessageBox.Show(ex.Message); 
                 }
 
+        }
+
+        public static void RegisterPerson(string table,string name,int age,int price)
+        {
+            name = name.ToLower();
+
+            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string query = $"INSERT INTO `{table}` (Name, Age, Price) VALUES (@name, @age, @price)";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@age", age);
+                        cmd.Parameters.AddWithValue("@price", price);
+                    
+
+
+                        // Execute the command
+                        int result = cmd.ExecuteNonQuery();
+
+                        if (result == 1)
+                        {
+                            MessageBox.Show("Regitsered for the event successfuly!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Registration unsuccessful.");
+
+                        }
+
+
+                    }
+                    connection.Close();
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
         }
 
 

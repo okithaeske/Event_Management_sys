@@ -39,7 +39,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you want to logout","logout",MessageBoxButtons.YesNo);
+            MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
             Login login = new Login();
             login.Show();
             this.Hide();
@@ -64,6 +64,13 @@ namespace Evennt_management
         {
             var Veiw = new Veiw_Events(this);
             Veiw.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RegisterEvent registerEvent = new RegisterEvent();
+            registerEvent.Show();
             this.Hide();
         }
     }

@@ -86,5 +86,12 @@ namespace Evennt_management
         {
 
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Organizer_interface organizer_Interface = new Organizer_interface();
+            organizer_Interface.Show();
+            this.Hide();
+        }
     }
 }
