@@ -4,15 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Evennt_management
 {
     internal class Database
     {
+        public static class UserSession
+        {
+            public static string CurrentOrganizer { get; set; }
+        }
         public static void register(string name, int age, string role,string username,string password,Form f1)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
@@ -150,7 +156,7 @@ namespace Evennt_management
         public static void CreateEvent(string date, string place, int price, int quantity, string name, string organizer)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
-            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Name = @organizer";
+            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
             string query = "INSERT INTO createevent (Name,Date,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             { 
@@ -321,6 +327,95 @@ namespace Evennt_management
             }
         }
 
+        public static void DisplayEventsByOrganizer(DataGridView datatable)
+        {
+            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            if (string.IsNullOrEmpty(organizer))
+            {
+                MessageBox.Show("Organizer not found. Please login again.");
+                return;
+            }
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string query = "SELECT Name, Date, Place, Price, Quantity FROM createevent WHERE Organizer_Name = @organizer";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@organizer", organizer);
+
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+
+                            // Bind the DataTable to the DataGridView
+                            datatable.DataSource = dt;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+        public static void UpdateEvent(string newName,string eventName, string newDate, string newPlace, int newPrice, int newQuantity,Form updateEvent)
+        {
+            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            if (string.IsNullOrEmpty(organizer))
+            {
+                MessageBox.Show("Organizer not found. Please login again.");
+                return;
+            }
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string query = "UPDATE createevent SET Name = @newName,Date = @newDate, Place = @newPlace, Price = @newPrice, Quantity = @newQuantity WHERE Name = @eventName AND Organizer_Name = @organizerName";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@eventName", eventName);
+                        cmd.Parameters.AddWithValue("@newName", newName);
+                        cmd.Parameters.AddWithValue("@newDate", newDate);
+                        cmd.Parameters.AddWithValue("@newPlace", newPlace);
+                        cmd.Parameters.AddWithValue("@newPrice", newPrice);
+                        cmd.Parameters.AddWithValue("@newQuantity", newQuantity);
+                        cmd.Parameters.AddWithValue("@organizerName", organizer);
+
+                        int result = cmd.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Event updated successfully!");
+                            CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
+                            createdEvent_Interface.Show();
+                            updateEvent.Hide();
+                        
+                        }
+                        else
+                        {
+                            MessageBox.Show("No event found to update.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
 
 

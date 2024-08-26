@@ -36,7 +36,6 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
             button5 = new Button();
             button6 = new Button();
             panel2 = new Panel();
@@ -56,7 +55,6 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button3);
-            panel1.Controls.Add(button4);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button6);
             panel1.Location = new Point(0, 0);
@@ -78,7 +76,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 10F);
-            button1.Location = new Point(27, 139);
+            button1.Location = new Point(27, 182);
             button1.Name = "button1";
             button1.Size = new Size(148, 66);
             button1.TabIndex = 1;
@@ -89,7 +87,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 10F);
-            button2.Location = new Point(27, 211);
+            button2.Location = new Point(27, 254);
             button2.Name = "button2";
             button2.Size = new Size(148, 66);
             button2.TabIndex = 2;
@@ -100,27 +98,18 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 10F);
-            button3.Location = new Point(27, 283);
+            button3.Location = new Point(27, 326);
             button3.Name = "button3";
             button3.Size = new Size(148, 66);
             button3.TabIndex = 3;
-            button3.Text = "Delete Event";
+            button3.Text = "Veiw Created Event";
             button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Segoe UI", 10F);
-            button4.Location = new Point(27, 355);
-            button4.Name = "button4";
-            button4.Size = new Size(148, 66);
-            button4.TabIndex = 4;
-            button4.Text = "Update Event";
-            button4.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button5
             // 
             button5.Font = new Font("Segoe UI", 10F);
-            button5.Location = new Point(27, 427);
+            button5.Location = new Point(27, 398);
             button5.Name = "button5";
             button5.Size = new Size(148, 61);
             button5.TabIndex = 5;
@@ -199,7 +188,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
-        private Button button4;
         private Button button5;
         private Button button6;
         private PictureBox pictureBox1;

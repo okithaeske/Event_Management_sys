@@ -1,3 +1,6 @@
+using static Evennt_management.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 namespace Evennt_management
 {
     public partial class Login : Form
@@ -46,6 +49,10 @@ namespace Evennt_management
             string password = textBox2.Text;
 
             Database.getUser(uname, password, this);
+            
+            // After validating the login credentials
+            UserSession.CurrentOrganizer = uname; // Replace with actual username
+            
 
         }
 
