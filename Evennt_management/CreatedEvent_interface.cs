@@ -40,5 +40,12 @@ namespace Evennt_management
             updateEvent.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DeleteEvent_interface deleteEvent = new DeleteEvent_interface();
+            deleteEvent.Show();
+            this.Hide();
+        }
     }
 }

@@ -76,6 +76,7 @@
             button2.TabIndex = 3;
             button2.Text = "Delete Event";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // CreatedEvent_interface
             // 
