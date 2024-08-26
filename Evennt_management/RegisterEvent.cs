@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Evennt_management
 {
@@ -47,6 +48,15 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+               string.IsNullOrWhiteSpace(textBox2.Text) ||
+               string.IsNullOrWhiteSpace(textBox3.Text) ||
+               string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method without further processing
+            }
+
             string eventName = textBox2.Text;
             string pname = textBox1.Text;
             int age = Convert.ToInt32(textBox3.Text);

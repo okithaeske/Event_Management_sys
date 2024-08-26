@@ -49,13 +49,39 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+              string.IsNullOrWhiteSpace(textBox2.Text) ||
+              string.IsNullOrWhiteSpace(textBox5.Text) ||
+              string.IsNullOrWhiteSpace(textBox6.Text)||
+              string.IsNullOrWhiteSpace(radioButton1.Text)||
+              string.IsNullOrWhiteSpace(radioButton2.Text)||
+              string.IsNullOrWhiteSpace(radioButton3.Text))
+            {
+                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method without further processing
+            }
+
+            string selectedValue = "";
+
+            if (radioButton1.Checked)
+            {
+                selectedValue = radioButton1.Text; // or any value you want to assign
+            }
+            else if (radioButton2.Checked)
+            {
+                selectedValue = radioButton2.Text;
+            }
+            else if (radioButton3.Checked)
+            {
+                selectedValue = radioButton3.Text;
+            }
             string name = textBox1.Text;
             int age = Convert.ToInt32(textBox2.Text);
-            string role = textBox3.Text;
+            string role = selectedValue;
             string userName = textBox5.Text;
             string password = textBox6.Text;
 
-            Database.register(name,age,role,userName,password,this);
+            Database.register(name, age, role, userName, password, this);
 
 
         }
@@ -81,6 +107,21 @@ namespace Evennt_management
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
 
         }

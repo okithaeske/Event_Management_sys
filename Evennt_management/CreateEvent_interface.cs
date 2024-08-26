@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Evennt_management
 {
@@ -35,6 +36,17 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+             string.IsNullOrWhiteSpace(textBox2.Text) ||
+             string.IsNullOrWhiteSpace(textBox5.Text) ||
+             string.IsNullOrWhiteSpace(textBox6.Text) ||
+             string.IsNullOrWhiteSpace(textBox3.Text) ||
+             string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method without further processing
+            }
+
             string name = textBox1.Text;
             string organizer = textBox4.Text;
             string date = textBox2.Text;

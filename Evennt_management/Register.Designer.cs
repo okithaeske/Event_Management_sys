@@ -36,10 +36,12 @@
             label7 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            textBox3 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
             panel1 = new Panel();
+            radioButton3 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -78,7 +80,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 200);
+            label5.Location = new Point(18, 241);
             label5.Name = "label5";
             label5.Size = new Size(75, 20);
             label5.TabIndex = 4;
@@ -87,7 +89,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(18, 244);
+            label6.Location = new Point(18, 285);
             label6.Name = "label6";
             label6.Size = new Size(70, 20);
             label6.TabIndex = 5;
@@ -120,17 +122,9 @@
             textBox2.TabIndex = 8;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(128, 152);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(216, 27);
-            textBox3.TabIndex = 9;
-            textBox3.TextChanged += textBox3_TextChanged;
-            // 
             // textBox5
             // 
-            textBox5.Location = new Point(128, 200);
+            textBox5.Location = new Point(128, 241);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(216, 27);
             textBox5.TabIndex = 11;
@@ -138,7 +132,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(128, 241);
+            textBox6.Location = new Point(128, 282);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(216, 27);
             textBox6.TabIndex = 12;
@@ -148,10 +142,12 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(radioButton3);
+            panel1.Controls.Add(radioButton2);
+            panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox6);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label3);
@@ -162,13 +158,47 @@
             panel1.Controls.Add(textBox2);
             panel1.Location = new Point(40, 57);
             panel1.Name = "panel1";
-            panel1.Size = new Size(362, 398);
+            panel1.Size = new Size(370, 438);
             panel1.TabIndex = 13;
             panel1.Paint += panel1_Paint;
             // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(244, 159);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(100, 24);
+            radioButton3.TabIndex = 16;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "Participant";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(128, 199);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(74, 24);
+            radioButton2.TabIndex = 15;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Admin";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(128, 159);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(95, 24);
+            radioButton1.TabIndex = 14;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Organizer";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            // 
             // button1
             // 
-            button1.Location = new Point(115, 325);
+            button1.Location = new Point(128, 340);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 13;
@@ -201,10 +231,12 @@
         private Label label7;
         private TextBox textBox1;
         private TextBox textBox2;
-        private TextBox textBox3;
         private TextBox textBox5;
         private TextBox textBox6;
         private Panel panel1;
         private Button button1;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }

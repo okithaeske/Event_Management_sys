@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.X509.Store;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,11 +17,35 @@ namespace Evennt_management
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string query = "INSERT INTO user_info (Name,Age,Role,Username,Password) VALUES (@name,@age,@role,@username,@password)";
+            string checkUserQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @username";
+            string checkNameQuery = "SELECT COUNT(*) FROM user_info WHERE Name = @name";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
+                    // checking whether username exists and sending error message
+                    using (MySqlCommand checkUserCmd = new MySqlCommand(checkUserQuery, connection))
+                    {
+                        checkUserCmd.Parameters.AddWithValue("@username", username);
+                        int userExists = Convert.ToInt32(checkUserCmd.ExecuteScalar());
+                        if (userExists > 0)
+                        {
+                            MessageBox.Show("Username already exists. Please choose a different username.");
+                            return; 
+                        }
+                    }
+                    // checking whether the name exists
+                    using (MySqlCommand checknameCmd = new MySqlCommand(checkNameQuery, connection)) 
+                    {
+                        checknameCmd.Parameters.AddWithValue("@name", name);
+                        int nameExists = Convert.ToInt32(checknameCmd.ExecuteScalar());
+                        if(nameExists > 0)
+                        {
+                            MessageBox.Show("Name already exists. Please choose a different Name.");
+                            return;
+                        }
+                    }
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@name", name);
@@ -125,12 +150,29 @@ namespace Evennt_management
         public static void CreateEvent(string date, string place, int price, int quantity, string name, string organizer)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Name = @organizer";
             string query = "INSERT INTO createevent (Name,Date,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             { 
                 try
                 {
                     connection.Open();
+                    // validation to see whether organizer has put his regitsered name
+
+                    using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
+                    {
+                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", organizer);
+                        int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
+
+                        if (organizerExists == 0)
+                        {
+                            MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
+                            return;
+                        }
+                    }
+
+                    // creating event
+
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@event", name);
@@ -154,7 +196,7 @@ namespace Evennt_management
                         }
                         else
                         {
-                            MessageBox.Show("unsuccessful");
+                            MessageBox.Show("Event creation was unsuccessful!");
 
                         }
 
@@ -226,10 +268,9 @@ namespace Evennt_management
                     datagrid.DataSource = table;
                     connection.Close();
                 }
-            
-                 catch (Exception ex)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message); 
+                 MessageBox.Show(ex.Message); 
                 }
 
         }
