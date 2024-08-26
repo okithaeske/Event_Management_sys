@@ -259,25 +259,29 @@ namespace Evennt_management
         public static void VeiwData(DataGridView datagrid)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string query = "SELECT * FROM createevent";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
                 try
                 {
                     connection.Open();
-                    MySqlCommand com = new MySqlCommand();
-                    com.Connection = connection;
-                    string query = "SELECT * FROM createevent";
-                    com.CommandText = query;
+                    using (MySqlCommand com = new MySqlCommand(query,connection))
+                    { 
+                        MySqlDataAdapter da = new MySqlDataAdapter(com);
+                        DataTable table = new DataTable();
+                        da.Fill(table);
+                        datagrid.DataSource = table;
 
-                    MySqlDataAdapter da = new MySqlDataAdapter(com);
-                    DataTable table = new DataTable();
-                    da.Fill(table); 
-                    datagrid.DataSource = table;
+                    }
                     connection.Close();
+
                 }
                 catch (Exception ex)
                 {
-                 MessageBox.Show(ex.Message); 
+                    MessageBox.Show(ex.Message);
                 }
+
+            }
 
         }
 
@@ -349,12 +353,10 @@ namespace Evennt_management
                     {
                         cmd.Parameters.AddWithValue("@organizer", organizer);
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
-                            adapter.Fill(dt);
-
-                            // Bind the DataTable to the DataGridView
+                            da.Fill(dt);
                             datatable.DataSource = dt;
                         }
                     }
@@ -367,7 +369,7 @@ namespace Evennt_management
         }
 
 
-        public static void UpdateEvent(string newName,string eventName, string newDate, string newPlace, int newPrice, int newQuantity,Form updateEvent)
+        public static void UpdateEvent(string newName, string eventName, string newDate, string newPlace, int newPrice, int newQuantity, Form updateEvent)
         {
             string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
             if (string.IsNullOrEmpty(organizer))
@@ -375,9 +377,11 @@ namespace Evennt_management
                 MessageBox.Show("Organizer not found. Please login again.");
                 return;
             }
+            string EventName = eventName.ToLower();
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string query = "UPDATE createevent SET Name = @newName,Date = @newDate, Place = @newPlace, Price = @newPrice, Quantity = @newQuantity WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            string renameTableQuery = $"RENAME TABLE `{EventName}` TO `{newName}`";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -398,15 +402,73 @@ namespace Evennt_management
 
                         if (result > 0)
                         {
+                            using (MySqlCommand renameCmd = new MySqlCommand(renameTableQuery, connection))
+                            {
+                                renameCmd.ExecuteNonQuery();
+                            }
                             MessageBox.Show("Event updated successfully!");
                             CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
                             createdEvent_Interface.Show();
                             updateEvent.Hide();
-                        
+
                         }
                         else
                         {
                             MessageBox.Show("No event found to update.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public static void DeleteEvent(string eventName, Form deleteEventForm)
+        {
+            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            if (string.IsNullOrEmpty(organizer))
+            {
+                MessageBox.Show("Organizer not found. Please login again.");
+                return;
+            }
+
+            string Eventname = eventName.ToLower();
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            string dropTableQuery = $"DROP TABLE IF EXISTS `{Eventname}`";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete the event record
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@eventName", eventName);
+                        deleteCmd.Parameters.AddWithValue("@organizerName", organizer);
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            // Drop the relating table
+                            using (MySqlCommand dropCmd = new MySqlCommand(dropTableQuery, connection))
+                            {
+                                dropCmd.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Event and associated table deleted successfully!");
+                            CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
+                            createdEvent_Interface.Show();
+                            deleteEventForm.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No event found to delete.");
                         }
                     }
                 }
