@@ -39,10 +39,18 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
-            Login login = new Login();
-            login.Show();
-            this.Hide();
+            DialogResult result = MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Login login = new Login();
+                login.Show();
+                this.Hide();
+
+            }
+            else
+            {
+                this.Show();
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)

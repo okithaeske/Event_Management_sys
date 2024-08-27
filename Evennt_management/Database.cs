@@ -153,11 +153,11 @@ namespace Evennt_management
         }
           
 
-        public static void CreateEvent(string date, string place, int price, int quantity, string name, string organizer)
+        public static void CreateEvent(string date,string time, string place, int price, int quantity, string name, string organizer)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
-            string query = "INSERT INTO createevent (Name,Date,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@place,@price,@quantity,@organizer)";
+            string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             { 
                 try
@@ -183,6 +183,7 @@ namespace Evennt_management
                     {
                         cmd.Parameters.AddWithValue("@event", name);
                         cmd.Parameters.AddWithValue("@date", date);
+                        cmd.Parameters.AddWithValue("@time", time);
                         cmd.Parameters.AddWithValue("@place",place);
                         cmd.Parameters.AddWithValue("@price",price);
                         cmd.Parameters.AddWithValue("@quantity",quantity);

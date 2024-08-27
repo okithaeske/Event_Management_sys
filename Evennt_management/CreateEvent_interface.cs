@@ -37,7 +37,7 @@ namespace Evennt_management
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-             string.IsNullOrWhiteSpace(textBox2.Text) ||
+             string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
              string.IsNullOrWhiteSpace(textBox6.Text) ||
              string.IsNullOrWhiteSpace(textBox3.Text) ||
@@ -47,14 +47,19 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            DateTime dateTime = dateTimePicker1.Value;
             string name = textBox1.Text;
             string organizer = textBox4.Text;
-            string date = textBox2.Text;
             string place = textBox5.Text;
             int price = Convert.ToInt32(textBox3.Text);
             int quantity = Convert.ToInt32(textBox6.Text);
 
-            Database.CreateEvent(date, place, price, quantity, name, organizer);
+            string date = (dateTime.Date).ToString("yyy/MM/dd");
+            string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
+            MessageBox.Show("sdsd","afffe");
+
+            Database.CreateEvent(date,time,place, price, quantity, name, organizer);
+
 
 
         }
@@ -104,6 +109,11 @@ namespace Evennt_management
             Organizer_interface organizer_Interface = new Organizer_interface();
             organizer_Interface.Show();
             this.Hide();
+        }
+
+        private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
