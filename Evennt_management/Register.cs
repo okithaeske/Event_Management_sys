@@ -54,7 +54,6 @@ namespace Evennt_management
               string.IsNullOrWhiteSpace(textBox5.Text) ||
               string.IsNullOrWhiteSpace(textBox6.Text)||
               string.IsNullOrWhiteSpace(radioButton1.Text)||
-              string.IsNullOrWhiteSpace(radioButton2.Text)||
               string.IsNullOrWhiteSpace(radioButton3.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -66,10 +65,6 @@ namespace Evennt_management
             if (radioButton1.Checked)
             {
                 selectedValue = radioButton1.Text; // or any value you want to assign
-            }
-            else if (radioButton2.Checked)
-            {
-                selectedValue = radioButton2.Text;
             }
             else if (radioButton3.Checked)
             {

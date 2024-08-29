@@ -8,12 +8,17 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 namespace Evennt_management
 {
-    internal class Organizer:Person,Validations
+    internal class Organizer : Person, Validations
     {
+     
+        public static string TableName { get; set; }
         public Organizer(string name, int age, string id, string username, string password, string description):base(name, age, id, username, password, description)
         {
             
         }
+
+    
+
         public void Login() { }
         public void Logout() { }
         public void Register() { }

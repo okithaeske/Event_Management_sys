@@ -56,7 +56,7 @@ namespace Evennt_management
 
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
-            MessageBox.Show("sdsd","afffe");
+        
 
             Database.CreateEvent(date,time,place, price, quantity, name, organizer);
 

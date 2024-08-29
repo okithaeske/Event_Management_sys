@@ -50,12 +50,12 @@ namespace Evennt_management
                 this.Hide();
 
             }
-            else 
+            else
             {
                 this.Show();
             }
 
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -69,6 +69,13 @@ namespace Evennt_management
         {
             CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
             createdEvent_Interface.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            VeiwBookings_interface veiwBookings_Interface = new VeiwBookings_interface();
+            veiwBookings_Interface.Show();
             this.Hide();
         }
     }

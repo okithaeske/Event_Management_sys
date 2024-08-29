@@ -47,5 +47,17 @@ namespace Evennt_management
             deleteEvent.Show();
             this.Hide();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            BookingsSub_interface bookingsSub_Interface = new BookingsSub_interface();
+            bookingsSub_Interface.Show();
+            this.Hide();
+        }
     }
 }
