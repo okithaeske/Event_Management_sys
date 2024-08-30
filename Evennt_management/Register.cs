@@ -94,7 +94,6 @@ namespace Evennt_management
 
             }
 
-            Database.register(name, age, role, userName, password, this);
 
 
         }

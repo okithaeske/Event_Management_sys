@@ -62,7 +62,8 @@ namespace Evennt_management
             int age = Convert.ToInt32(textBox3.Text);
             int price = Convert.ToInt32(textBox4.Text);
 
-            Database.RegisterPerson(eventName, pname, age, price);  
+            Participant p1 = new Participant(); 
+            p1.RegisterToEvent(eventName, pname, age, price);
 
         }
 

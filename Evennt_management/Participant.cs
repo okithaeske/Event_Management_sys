@@ -16,22 +16,29 @@ namespace Evennt_management
         public Participant(string name, int age, string role, string username, string password) : base(name, age, role, username, password)
         {
         }
+        public Participant()
+        {
+            
+        }
+
+        public Participant(string username, string password):base(username,password) { }
+
+        public void JoinEvent() { }
 
 
         public override void Register(Person person, Form f1)
         {
             Database.register(person, f1);
         }
-        public Participant(string username, string password):base(username,password) { }
-
-        public void JoinEvent() { }
-
-
-
         public override void login(string username, string password, Form f1)
         {
             Database.getUser(username, password, f1);
 
+        }
+
+        public void RegisterToEvent(string eventName,string pname, int age, int price) 
+        {
+            Database.RegisterPerson(eventName, pname, age, price);
         }
         public void Logout() { }
         public void Register() { }
