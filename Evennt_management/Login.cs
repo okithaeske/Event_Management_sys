@@ -48,7 +48,27 @@ namespace Evennt_management
             string uname = textBox1.Text;
             string password = textBox2.Text;
 
-            Database.getUser(uname, password, this);
+            string role = Database.getRole(uname);
+
+            if (role == "admin")
+            {
+                Person person = new Admin(uname, password);
+                person.login(uname, password, this);
+            }
+            else if (role == "organizer")
+            {
+                Person person = new Organizer(uname, password);
+                person.login(uname, password, this);
+
+            }
+            else if (role == "participant")
+            {
+                Person person = new Participant(uname,password);
+                person.login(uname, password,this);
+            
+            }
+
+            
             
             // After validating the login credentials
             UserSession.CurrentOrganizer = uname; // Replace with actual username

@@ -8,7 +8,7 @@ namespace Evennt_management
 {
     internal interface Validations
     {
-        public void Login();
+        public void login(string username, string password, Form f1);
         public void Logout();
         public void Register();
         public void Veiw_details();

@@ -24,11 +24,12 @@ namespace Evennt_management
         public string Name { get { return name; } set { name = value; } }
         public string Organizer { get { return organizer; } set { organizer = value; } }
 
-        public Event(string date,string time,string place,int price,int quantity,string name,string organizer)
+        public Event(string date, string time, string place, int price, int quantity, string name, string organizer)
         {
             this.date = date;
             this.time = time;
             this.place = place;
+            this.price = price;
             this.quantity = quantity;
             this.name = name;
             this.organizer = organizer;
@@ -36,7 +37,10 @@ namespace Evennt_management
         }
 
         public void DisplayEvent() { }
-        public void CreateEvent() { }
+        public void CreateEvent(Event e1)     
+        {
+            Database.CreateEvent(e1);
+        }
         public void UpdateEvent() { }
         public void DeleteEvent() { }
 

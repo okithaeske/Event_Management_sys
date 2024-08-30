@@ -76,6 +76,24 @@ namespace Evennt_management
             string userName = textBox5.Text;
             string password = textBox6.Text;
 
+            if (role == "admin")
+            {
+                Person person = new Admin(name,age,role,userName,password);
+                person.Register(person, this);
+            }
+            else if (role == "organizer")
+            {
+                Person person = new Organizer(name, age, role, userName, password);
+                person.Register(person, this);
+
+            }
+            else if (role == "participant")
+            {
+                Person person = new Organizer(name, age, role, userName, password);
+                person.Register(person, this);
+
+            }
+
             Database.register(name, age, role, userName, password, this);
 
 

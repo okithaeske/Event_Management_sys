@@ -19,7 +19,7 @@ namespace Evennt_management
         {
             public static string CurrentOrganizer { get; set; }
         }
-        public static void register(string name, int age, string role,string username,string password,Form f1)
+        public static void register(Person person, Form f1)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string query = "INSERT INTO user_info (Name,Age,Role,Username,Password) VALUES (@name,@age,@role,@username,@password)";
@@ -33,20 +33,20 @@ namespace Evennt_management
                     // checking whether username exists and sending error message
                     using (MySqlCommand checkUserCmd = new MySqlCommand(checkUserQuery, connection))
                     {
-                        checkUserCmd.Parameters.AddWithValue("@username", username);
+                        checkUserCmd.Parameters.AddWithValue("@username", person.Username);
                         int userExists = Convert.ToInt32(checkUserCmd.ExecuteScalar());
                         if (userExists > 0)
                         {
                             MessageBox.Show("Username already exists. Please choose a different username.");
-                            return; 
+                            return;
                         }
                     }
                     // checking whether the name exists
-                    using (MySqlCommand checknameCmd = new MySqlCommand(checkNameQuery, connection)) 
+                    using (MySqlCommand checknameCmd = new MySqlCommand(checkNameQuery, connection))
                     {
-                        checknameCmd.Parameters.AddWithValue("@name", name);
+                        checknameCmd.Parameters.AddWithValue("@name", person.Name);
                         int nameExists = Convert.ToInt32(checknameCmd.ExecuteScalar());
-                        if(nameExists > 0)
+                        if (nameExists > 0)
                         {
                             MessageBox.Show("Name already exists. Please choose a different Name.");
                             return;
@@ -54,11 +54,11 @@ namespace Evennt_management
                     }
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@name", name);
-                        cmd.Parameters.AddWithValue("@age", age);
-                        cmd.Parameters.AddWithValue("@role", role);
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@name", person.Name);
+                        cmd.Parameters.AddWithValue("@age", person.Age);
+                        cmd.Parameters.AddWithValue("@role", person.Role);
+                        cmd.Parameters.AddWithValue("@username", person.Username);
+                        cmd.Parameters.AddWithValue("@password", person.Password);
 
 
                         // Execute the command
@@ -106,7 +106,7 @@ namespace Evennt_management
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@Username", username);
                     cmd.Parameters.AddWithValue("@Password", password);
-                   
+
 
                     string role = cmd.ExecuteScalar()?.ToString();
 
@@ -151,15 +151,45 @@ namespace Evennt_management
                 }
             }
         }
-          
 
-        public static void CreateEvent(string date,string time, string place, int price, int quantity, string name, string organizer)
+
+        public static string getRole(string username)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT Role FROM user_info WHERE Username = @Username";
+
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+
+
+                    string role = cmd.ExecuteScalar()?.ToString();
+                    return role.ToLower();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return "";
+                }
+
+            }
+
+        }
+
+
+
+        public static void CreateEvent(Event e1)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
             string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
-            { 
+            {
                 try
                 {
                     connection.Open();
@@ -167,7 +197,7 @@ namespace Evennt_management
 
                     using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
                     {
-                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", organizer);
+                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
                         int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
 
                         if (organizerExists == 0)
@@ -181,13 +211,13 @@ namespace Evennt_management
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@event", name);
-                        cmd.Parameters.AddWithValue("@date", date);
-                        cmd.Parameters.AddWithValue("@time", time);
-                        cmd.Parameters.AddWithValue("@place",place);
-                        cmd.Parameters.AddWithValue("@price",price);
-                        cmd.Parameters.AddWithValue("@quantity",quantity);
-                        cmd.Parameters.AddWithValue("@organizer",organizer);
+                        cmd.Parameters.AddWithValue("@event", e1.Name);
+                        cmd.Parameters.AddWithValue("@date", e1.Date);
+                        cmd.Parameters.AddWithValue("@time", e1.Time);
+                        cmd.Parameters.AddWithValue("@place", e1.Place);
+                        cmd.Parameters.AddWithValue("@price", e1.Price);
+                        cmd.Parameters.AddWithValue("@quantity", e1.Quantity);
+                        cmd.Parameters.AddWithValue("@organizer", e1.Organizer);
 
 
                         // Execute the command
@@ -197,7 +227,7 @@ namespace Evennt_management
                         {
                             MessageBox.Show("Event created successfuly!");
 
-                            CreateTableForEvent(name);
+                            CreateTableForEvent(e1.Name);
 
 
                         }
@@ -266,8 +296,8 @@ namespace Evennt_management
                 try
                 {
                     connection.Open();
-                    using (MySqlCommand com = new MySqlCommand(query,connection))
-                    { 
+                    using (MySqlCommand com = new MySqlCommand(query, connection))
+                    {
                         MySqlDataAdapter da = new MySqlDataAdapter(com);
                         DataTable table = new DataTable();
                         da.Fill(table);
@@ -286,7 +316,7 @@ namespace Evennt_management
 
         }
 
-        public static void RegisterPerson(string table,string name,int age,int price)
+        public static void RegisterPerson(string table, string name, int age, int price)
         {
             name = name.ToLower();
 
@@ -303,7 +333,7 @@ namespace Evennt_management
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@age", age);
                         cmd.Parameters.AddWithValue("@price", price);
-                    
+
 
 
                         // Execute the command
@@ -480,7 +510,7 @@ namespace Evennt_management
             }
         }
 
-        public static void VeiwBookingsData(string Table,DataGridView datagrid)
+        public static void VeiwBookingsData(string Table, DataGridView datagrid)
         {
             Table = Table.ToLower();
 
