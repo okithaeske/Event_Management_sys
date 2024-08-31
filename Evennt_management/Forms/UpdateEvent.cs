@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Evennt_management
@@ -33,8 +34,8 @@ namespace Evennt_management
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-             string.IsNullOrWhiteSpace(textBox6.Text) ||
+            if
+             (string.IsNullOrWhiteSpace(textBox6.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
              string.IsNullOrWhiteSpace(textBox2.Text) ||
              string.IsNullOrWhiteSpace(textBox3.Text) ||
@@ -44,14 +45,24 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            DateTime dateTime = dateTimePicker1.Value;
             string newName = textBox6.Text;
             string currentname = textBox5.Text;
-            string newdate = textBox1.Text;
             string newplace = textBox2.Text;
             int newprice = int.Parse(textBox3.Text);
             int newquantity = Convert.ToInt32(textBox4.Text);
 
-            Database.UpdateEvent(newName,currentname,newdate,newplace,newprice,newquantity,this);
+            string date = (dateTime.Date).ToString("yyy/MM/dd");
+            string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
+
+            //Database.UpdateEvent(newName, currentname, date, time, newplace, newprice, newquantity, this);
+            Event e1 = new Event(currentname,date, time, newplace, newprice, newquantity, newName);
+            Organizer org1 = new Organizer();
+            org1.UpdateEvent(e1, this);
+
+
+
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -80,6 +91,11 @@ namespace Evennt_management
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
         }

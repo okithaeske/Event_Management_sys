@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateEvent));
             panel1 = new Panel();
+            textBox6 = new TextBox();
+            label7 = new Label();
             textBox5 = new TextBox();
             label6 = new Label();
             button1 = new Button();
@@ -37,19 +39,18 @@
             textBox4 = new TextBox();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
-            textBox1 = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            label7 = new Label();
-            textBox6 = new TextBox();
+            dateTimePicker1 = new DateTimePicker();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(textBox6);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox5);
@@ -59,7 +60,6 @@
             panel1.Controls.Add(textBox4);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -70,6 +70,24 @@
             panel1.Size = new Size(906, 507);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(580, 129);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(241, 27);
+            textBox6.TabIndex = 14;
+            textBox6.TextChanged += textBox6_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Location = new Point(458, 129);
+            label7.Name = "label7";
+            label7.Size = new Size(100, 23);
+            label7.TabIndex = 13;
+            label7.Text = "New Name";
             // 
             // textBox5
             // 
@@ -135,14 +153,6 @@
             textBox2.TabIndex = 6;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(175, 214);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(241, 27);
-            textBox1.TabIndex = 5;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -193,23 +203,16 @@
             label1.TabIndex = 0;
             label1.Text = "Update Table";
             // 
-            // label7
+            // dateTimePicker1
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label7.Location = new Point(458, 129);
-            label7.Name = "label7";
-            label7.Size = new Size(100, 23);
-            label7.TabIndex = 13;
-            label7.Text = "New Name";
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(580, 129);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(241, 27);
-            textBox6.TabIndex = 14;
-            textBox6.TextChanged += textBox6_TextChanged;
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            dateTimePicker1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Location = new Point(175, 219);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(241, 30);
+            dateTimePicker1.TabIndex = 15;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // UpdateEvent
             // 
@@ -231,7 +234,6 @@
         private TextBox textBox4;
         private TextBox textBox3;
         private TextBox textBox2;
-        private TextBox textBox1;
         private Label label5;
         private Label label4;
         private Label label3;
@@ -243,5 +245,6 @@
         private TextBox textBox5;
         private TextBox textBox6;
         private Label label7;
+        private DateTimePicker dateTimePicker1;
     }
 }

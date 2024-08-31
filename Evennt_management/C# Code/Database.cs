@@ -400,7 +400,7 @@ namespace Evennt_management
         }
 
 
-        public static void UpdateEvent(string newName, string eventName, string newDate, string newPlace, int newPrice, int newQuantity, Form updateEvent)
+        public static void UpdateEvent(Event e1, Form updateEvent)
         {
             string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
             if (string.IsNullOrEmpty(organizer))
@@ -408,11 +408,11 @@ namespace Evennt_management
                 MessageBox.Show("Organizer not found. Please login again.");
                 return;
             }
-            string EventName = eventName.ToLower();
+            string EventName = e1.CurrentName.ToLower();
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
-            string query = "UPDATE createevent SET Name = @newName,Date = @newDate, Place = @newPlace, Price = @newPrice, Quantity = @newQuantity WHERE Name = @eventName AND Organizer_Name = @organizerName";
-            string renameTableQuery = $"RENAME TABLE `{EventName}` TO `{newName}`";
+            string query = "UPDATE createevent SET Name = @newName,Date = @newDate,Time = @newtime, Place = @newPlace, Price = @newPrice, Quantity = @newQuantity WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            string renameTableQuery = $"RENAME TABLE `{EventName}` TO `{e1.Name}`";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -421,12 +421,13 @@ namespace Evennt_management
                     connection.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@eventName", eventName);
-                        cmd.Parameters.AddWithValue("@newName", newName);
-                        cmd.Parameters.AddWithValue("@newDate", newDate);
-                        cmd.Parameters.AddWithValue("@newPlace", newPlace);
-                        cmd.Parameters.AddWithValue("@newPrice", newPrice);
-                        cmd.Parameters.AddWithValue("@newQuantity", newQuantity);
+                        cmd.Parameters.AddWithValue("@eventName", e1.CurrentName);
+                        cmd.Parameters.AddWithValue("@newName", e1.Name);
+                        cmd.Parameters.AddWithValue("@newDate", e1.Date);
+                        cmd.Parameters.AddWithValue("@newtime", e1.Time);
+                        cmd.Parameters.AddWithValue("@newPlace", e1.Place);
+                        cmd.Parameters.AddWithValue("@newPrice", e1.Price);
+                        cmd.Parameters.AddWithValue("@newQuantity", e1.Quantity);
                         cmd.Parameters.AddWithValue("@organizerName", organizer);
 
                         int result = cmd.ExecuteNonQuery();

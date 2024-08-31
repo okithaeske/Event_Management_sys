@@ -33,9 +33,14 @@ namespace Evennt_management
             e1.CreateEvent(e1);
         }
 
-        
+        public void UpdateEvent(Event e1,Form updateEvent)
+        {
+            e1.UpdateEvent(e1,updateEvent);
+        }
 
-   
+
+
+
         public void Logout() { }
         public void Register() { }
         public void Veiw_details() { }
