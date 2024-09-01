@@ -52,8 +52,8 @@ namespace Evennt_management
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
               string.IsNullOrWhiteSpace(textBox2.Text) ||
               string.IsNullOrWhiteSpace(textBox5.Text) ||
-              string.IsNullOrWhiteSpace(textBox6.Text)||
-              string.IsNullOrWhiteSpace(radioButton1.Text)||
+              string.IsNullOrWhiteSpace(textBox6.Text) ||
+              string.IsNullOrWhiteSpace(radioButton1.Text) ||
               string.IsNullOrWhiteSpace(radioButton3.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,24 +72,21 @@ namespace Evennt_management
             }
             string name = textBox1.Text;
             int age = Convert.ToInt32(textBox2.Text);
-            string role = selectedValue;
+            string role = selectedValue.ToLower();
             string userName = textBox5.Text;
             string password = textBox6.Text;
 
-            if (role == "admin")
-            {
-                Person person = new Admin(name,age,role,userName,password);
-                person.Register(person, this);
-            }
-            else if (role == "organizer")
+          
+            if (role == "organizer")
             {
                 Person person = new Organizer(name, age, role, userName, password);
                 person.Register(person, this);
+                
 
             }
             else if (role == "participant")
             {
-                Person person = new Organizer(name, age, role, userName, password);
+                Person person = new Participant(name, age, role, userName, password);
                 person.Register(person, this);
 
             }
@@ -134,6 +131,11 @@ namespace Evennt_management
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
         {
 
         }

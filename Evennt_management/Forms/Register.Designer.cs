@@ -170,6 +170,7 @@
             radioButton3.TabStop = true;
             radioButton3.Text = "Participant";
             radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged_1;
             // 
             // radioButton1
             // 

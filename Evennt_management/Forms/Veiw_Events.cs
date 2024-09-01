@@ -22,7 +22,7 @@ namespace Evennt_management
         private void button1_Click(object sender, EventArgs e)
         {
             _previousForm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

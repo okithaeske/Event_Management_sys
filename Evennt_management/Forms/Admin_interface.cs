@@ -16,5 +16,40 @@ namespace Evennt_management
         {
             InitializeComponent();
         }
+
+        private void Admin_interface_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Login login = new Login();
+                login.Show();
+                this.Hide();
+
+            }
+            else
+            {
+                this.Show();
+            }
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var Veiw = new Veiw_Events(this);
+            Veiw.Show();
+            this.Hide();
+        }
     }
 }
