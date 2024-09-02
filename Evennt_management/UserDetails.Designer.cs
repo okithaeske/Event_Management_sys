@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserDetails));
             dataGridView1 = new DataGridView();
+            button1 = new Button();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -38,21 +39,31 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 2);
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(795, 478);
+            dataGridView1.Size = new Size(809, 479);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(815, 147);
+            button1.Name = "button1";
+            button1.Size = new Size(171, 151);
+            button1.TabIndex = 1;
+            button1.Text = "Delete Users";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(797, 502);
+            pictureBox1.Location = new Point(836, 478);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(115, 63);
-            pictureBox1.TabIndex = 1;
+            pictureBox1.Size = new Size(150, 78);
+            pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
@@ -62,8 +73,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(930, 582);
+            ClientSize = new Size(998, 568);
             Controls.Add(pictureBox1);
+            Controls.Add(button1);
             Controls.Add(dataGridView1);
             Name = "UserDetails";
             Text = "UserDetails";
@@ -76,6 +88,7 @@
         #endregion
 
         private DataGridView dataGridView1;
+        private Button button1;
         private PictureBox pictureBox1;
     }
 }

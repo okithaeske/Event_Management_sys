@@ -15,6 +15,7 @@ namespace Evennt_management
 {
     internal class Database
     {
+        // createing a 
         public static class UserSession
         {
             public static string CurrentOrganizer { get; set; }
@@ -572,16 +573,113 @@ namespace Evennt_management
 
         }
 
+        public static void DeleteUser(string username)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Check if the user is an organizer
+                    string checkRole = "SELECT Role FROM user_info WHERE Username = @username";
+                    string userRole = null;
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkRole, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            userRole = result.ToString();
+                        }
+                    }
+
+                    if (userRole == "organizer")
+                    {
+                        // If the user is an organizer, delete all their events and tables
+                        DeleteEveryofOrganizer(username);
+                    }
 
+                    // Delete the user from user_info table
+                    string deleteUser = "DELETE FROM user_info WHERE Username = @username";
+                    using (MySqlCommand cmd = new MySqlCommand(deleteUser, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        int rows = cmd.ExecuteNonQuery();
 
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("User deleted successfully.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user found with the given username.");
+                        }
+                    }
 
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
 
+        private static void DeleteEveryofOrganizer(string username)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
 
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
 
+                    //Get all event names created by this organizer
 
+                    string getEventNamesQuery = "SELECT Name FROM createevent WHERE Organizer_Name = @organizerName";
+                    List<string> eventNames = new List<string>();
 
+                    using (MySqlCommand getEventNamesCmd = new MySqlCommand(getEventNamesQuery, connection))
+                    {
+                        getEventNamesCmd.Parameters.AddWithValue("@organizerName", username);
+                        using (MySqlDataReader reader = getEventNamesCmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                eventNames.Add(reader["Name"].ToString());
+                            }
+                        }
+                    }
+                    //Delete all events created by this organizer
+                    foreach (string eventName in eventNames)
+                    {
+                        // Delete the event from createevent table
+                        string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName";
+                        using (MySqlCommand cmd = new MySqlCommand(deleteEventQuery, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@eventName", eventName);
+                            cmd.ExecuteNonQuery();
+                        }
 
+                        // Drop the event's from specific tables
+                        string dropTableQuery = $"DROP TABLE IF EXISTS `{eventName.ToLower()}`";
+                        using (MySqlCommand cmd = new MySqlCommand(dropTableQuery, connection))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    connection.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Error deleting organizer and associated data: " + ex.Message);
+                }
 
+            }
 
 
 
@@ -637,5 +735,16 @@ namespace Evennt_management
 
 
 
+
+
+
+
+
+
+
+
+
+
+        }
     }
 }

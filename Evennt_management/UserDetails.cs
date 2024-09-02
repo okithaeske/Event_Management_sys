@@ -17,13 +17,6 @@ namespace Evennt_management
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            Admin_interface admin_Interface = new Admin_interface();
-            admin_Interface.Show();
-            this.Hide();
-        }
-
         private void UserDetails_Load(object sender, EventArgs e)
         {
             Database.VeiwUserInfo(dataGridView1);
@@ -32,6 +25,20 @@ namespace Evennt_management
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Admin_interface admin_Interface = new Admin_interface();
+            admin_Interface.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DeleteUser deleteUser = new DeleteUser();
+            deleteUser.Show();
+            this.Hide();
         }
     }
 }
