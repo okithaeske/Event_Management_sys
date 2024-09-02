@@ -51,5 +51,12 @@ namespace Evennt_management
             Veiw.Show();
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            UserDetails userDetails = new UserDetails();
+            userDetails.Show();
+            this.Hide();
+        }
     }
 }

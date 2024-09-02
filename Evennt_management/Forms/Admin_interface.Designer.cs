@@ -37,6 +37,7 @@
             label1 = new Label();
             panel1 = new Panel();
             panel4 = new Panel();
+            button3 = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -46,6 +47,7 @@
             // 
             panel2.BackColor = Color.DarkSlateBlue;
             panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(pictureBox1);
@@ -130,6 +132,18 @@
             panel4.Size = new Size(793, 432);
             panel4.TabIndex = 2;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            button3.ForeColor = SystemColors.ActiveCaptionText;
+            button3.Location = new Point(27, 261);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 72);
+            button3.TabIndex = 3;
+            button3.Text = "Veiw User Details";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Admin_interface
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -157,5 +171,6 @@
         private PictureBox pictureBox1;
         private Button button1;
         private Button button2;
+        private Button button3;
     }
 }

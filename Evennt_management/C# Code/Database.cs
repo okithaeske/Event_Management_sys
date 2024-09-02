@@ -543,6 +543,36 @@ namespace Evennt_management
         }
 
 
+        public static void VeiwUserInfo(DataGridView datagrid)
+        {
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string query = "SELECT ID, Name, Age,Role, Username FROM user_info WHERE Role != 'admin'";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand com = new MySqlCommand(query, connection))
+                    {
+                        MySqlDataAdapter da = new MySqlDataAdapter(com);
+                        DataTable table = new DataTable();
+                        da.Fill(table);
+                        datagrid.DataSource = table;
+
+                    }
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+        }
+
+
 
 
 
