@@ -19,7 +19,7 @@ namespace Evennt_management
 
         private void Admin_interface_Load(object sender, EventArgs e)
         {
-
+            Database.VeiwData(dataGridView1);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -47,8 +47,8 @@ namespace Evennt_management
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var Veiw = new Veiw_Events(this);
-            Veiw.Show();
+            RemoveEventadm removeEventadm = new RemoveEventadm();
+            removeEventadm.Show();
             this.Hide();
         }
 
@@ -57,6 +57,16 @@ namespace Evennt_management
             UserDetails userDetails = new UserDetails();
             userDetails.Show();
             this.Hide();
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

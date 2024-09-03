@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin_interface));
             panel2 = new Panel();
+            button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             pictureBox1 = new PictureBox();
@@ -37,10 +38,12 @@
             label1 = new Label();
             panel1 = new Panel();
             panel4 = new Panel();
-            button3 = new Button();
+            dataGridView1 = new DataGridView();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -57,6 +60,18 @@
             panel2.Size = new Size(210, 569);
             panel2.TabIndex = 0;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            button3.ForeColor = SystemColors.ActiveCaptionText;
+            button3.Location = new Point(27, 261);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 72);
+            button3.TabIndex = 3;
+            button3.Text = "Veiw User Details";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // button2
             // 
             button2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
@@ -65,7 +80,7 @@
             button2.Name = "button2";
             button2.Size = new Size(144, 71);
             button2.TabIndex = 0;
-            button2.Text = "Veiw Events";
+            button2.Text = "Remove Events";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -102,7 +117,7 @@
             panel3.Controls.Add(panel1);
             panel3.Location = new Point(219, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(805, 131);
+            panel3.Size = new Size(793, 131);
             panel3.TabIndex = 1;
             // 
             // label1
@@ -124,25 +139,24 @@
             // 
             // panel4
             // 
-            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
             panel4.BackgroundImageLayout = ImageLayout.Stretch;
             panel4.BorderStyle = BorderStyle.Fixed3D;
+            panel4.Controls.Add(dataGridView1);
             panel4.Location = new Point(219, 137);
             panel4.Name = "panel4";
             panel4.Size = new Size(793, 432);
             panel4.TabIndex = 2;
+            panel4.Paint += panel4_Paint;
             // 
-            // button3
+            // dataGridView1
             // 
-            button3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            button3.ForeColor = SystemColors.ActiveCaptionText;
-            button3.Location = new Point(27, 261);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 72);
-            button3.TabIndex = 3;
-            button3.Text = "Veiw User Details";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(783, 419);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Admin_interface
             // 
@@ -159,6 +173,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -166,11 +182,12 @@
         private Panel panel2;
         private Panel panel3;
         private Panel panel1;
-        private Panel panel4;
         private Label label1;
         private PictureBox pictureBox1;
         private Button button1;
         private Button button2;
         private Button button3;
+        private Panel panel4;
+        private DataGridView dataGridView1;
     }
 }

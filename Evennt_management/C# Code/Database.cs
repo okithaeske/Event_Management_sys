@@ -640,10 +640,10 @@ namespace Evennt_management
 
                     //Get all event names created by this organizer
 
-                    string getEventNamesQuery = "SELECT Name FROM createevent WHERE Organizer_Name = @organizerName";
+                    string getEventNames = "SELECT Name FROM createevent WHERE Organizer_Name = @organizerName";
                     List<string> eventNames = new List<string>();
 
-                    using (MySqlCommand getEventNamesCmd = new MySqlCommand(getEventNamesQuery, connection))
+                    using (MySqlCommand getEventNamesCmd = new MySqlCommand(getEventNames, connection))
                     {
                         getEventNamesCmd.Parameters.AddWithValue("@organizerName", username);
                         using (MySqlDataReader reader = getEventNamesCmd.ExecuteReader())
@@ -681,70 +681,75 @@ namespace Evennt_management
 
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
         }
+
+
+        public static void AdminDeleteEvent(string eventName)
+        {
+
+            string Eventname = eventName.ToLower();
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            string dropTableQuery = $"DROP TABLE IF EXISTS `{Eventname}`";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete the event record
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@eventName", eventName);
+                       
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            // Drop the relating table
+                            using (MySqlCommand dropCmd = new MySqlCommand(dropTableQuery, connection))
+                            {
+                                dropCmd.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Event and associated table deleted successfully!");
+                         
+                        }
+                        else
+                        {
+                            MessageBox.Show("No event found to delete.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
