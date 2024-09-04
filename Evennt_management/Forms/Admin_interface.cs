@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,6 +68,13 @@ namespace Evennt_management
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            BookingsSubadm bookingsSubadm = new BookingsSubadm();
+            bookingsSubadm.Show();
+            this.Hide();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Evennt_management
 {
-    partial class Veiw_Events
+    partial class ViewBookings_interface
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Veiw_Events));
-            button1 = new Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewBookings_interface));
             dataGridView1 = new DataGridView();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
-            button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Location = new Point(12, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(89, 53);
-            button1.TabIndex = 0;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // dataGridView1
             // 
-            dataGridView1.BackgroundColor = Color.DarkTurquoise;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 81);
+            dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(929, 441);
-            dataGridView1.TabIndex = 1;
+            dataGridView1.Size = new Size(841, 457);
+            dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Veiw_Events
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(837, 475);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(117, 64);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // VeiwBookings_interface
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(953, 553);
+            ClientSize = new Size(966, 551);
+            Controls.Add(pictureBox1);
             Controls.Add(dataGridView1);
-            Controls.Add(button1);
-            Name = "Veiw_Events";
-            Text = "Veiw_Events";
-            Load += Veiw_Events_Load;
+            Name = "VeiwBookings_interface";
+            Text = "VeiwBookings_interface";
+            Load += VeiwBookings_interface_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
         private DataGridView dataGridView1;
+        private PictureBox pictureBox1;
     }
 }

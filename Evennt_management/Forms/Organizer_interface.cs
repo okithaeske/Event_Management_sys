@@ -34,7 +34,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var Veiw = new Veiw_Events(this);
+            var Veiw = new View_Events(this);
             Veiw.Show();
             this.Hide();
 
@@ -74,7 +74,7 @@ namespace Evennt_management
 
         private void button5_Click(object sender, EventArgs e)
         {
-            VeiwBookings_interface veiwBookings_Interface = new VeiwBookings_interface();
+            ViewBookings_interface veiwBookings_Interface = new ViewBookings_interface();
             veiwBookings_Interface.Show();
             this.Hide();
         }

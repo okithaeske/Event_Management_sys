@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Evennt_management.Forms;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.X509.Store;
 using System;
 using System.Collections.Generic;
@@ -681,7 +682,7 @@ namespace Evennt_management
 
             }
 
-   
+
         }
 
 
@@ -704,7 +705,7 @@ namespace Evennt_management
                     using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
                     {
                         deleteCmd.Parameters.AddWithValue("@eventName", eventName);
-                       
+
 
                         int deleteResult = deleteCmd.ExecuteNonQuery();
 
@@ -716,7 +717,7 @@ namespace Evennt_management
                                 dropCmd.ExecuteNonQuery();
                             }
                             MessageBox.Show("Event and associated table deleted successfully!");
-                         
+
                         }
                         else
                         {
@@ -730,6 +731,53 @@ namespace Evennt_management
                 }
             }
         }
+
+        public static void kickUser(string usersName,string Tablename , Form kick)
+        {
+       
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete he user from the event
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@Name", usersName);
+
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            MessageBox.Show("User kicked successfully!");
+                            ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
+                            viewBookingsadm_Interface.Show();
+                            kick.Hide();
+                            
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user found to delete.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+
 
 
 

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Evennt_management
 {
-    public partial class Veiw_Events : Form
+    public partial class View_Events : Form
     {
         private Form _previousForm;
-        public Veiw_Events(Form previousForm)
+        public View_Events(Form previousForm)
         {
             InitializeComponent();
             _previousForm = previousForm;

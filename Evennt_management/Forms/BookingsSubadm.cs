@@ -8,24 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Evennt_management
+namespace Evennt_management.Forms
 {
-    public partial class BookingsSub_interface : Form
+    public partial class BookingsSubadm : Form
     {
-        public BookingsSub_interface()
+        public BookingsSubadm()
         {
             InitializeComponent();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
-            createdEvent_Interface.Show();
+            Admin_interface admin_Interface = new Admin_interface();
+            admin_Interface.Show();
             this.Hide();
         }
 
@@ -34,15 +29,11 @@ namespace Evennt_management
             string tableName = textBox1.Text;
             Organizer.TableName = tableName;
 
-            ViewBookings_interface veiwBookings_Interface = new ViewBookings_interface();
-            veiwBookings_Interface.Show();
+            ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
+            viewBookingsadm_Interface.Show();
             this.Hide();
-            
-        }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+          
         }
     }
 }

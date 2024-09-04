@@ -70,7 +70,7 @@ namespace Evennt_management
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var Veiw = new Veiw_Events(this);
+            var Veiw = new View_Events(this);
             Veiw.Show();
             this.Hide();
         }

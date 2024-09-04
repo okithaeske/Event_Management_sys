@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Evennt_management
 {
-    public partial class VeiwBookings_interface : Form
+    public partial class ViewBookings_interface : Form
     {
-        public VeiwBookings_interface()
+        public ViewBookings_interface()
         {
             InitializeComponent();
         }
