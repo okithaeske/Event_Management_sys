@@ -24,7 +24,9 @@ namespace Evennt_management.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
+            viewBookingsadm_Interface.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
