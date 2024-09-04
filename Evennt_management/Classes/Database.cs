@@ -185,7 +185,7 @@ namespace Evennt_management
 
 
 
-        public static void CreateEvent(Event e1)
+        public static void CreateEvent(Event e1, Form create)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
@@ -228,6 +228,9 @@ namespace Evennt_management
                         if (result == 1)
                         {
                             MessageBox.Show("Event created successfuly!");
+                            Organizer_interface organizer_Interface = new Organizer_interface();
+                            organizer_Interface.Show();
+                            create.Hide();
 
                             CreateTableForEvent(e1.Name);
 
@@ -277,7 +280,7 @@ namespace Evennt_management
                     using (MySqlCommand createTableCmd = new MySqlCommand(createTableQuery, connection))
                     {
                         createTableCmd.ExecuteNonQuery();
-                        MessageBox.Show($"Table '{tableName}' with columns Name, Age, and Price created successfully.");
+                    
                     }
                 }
                 catch (MySqlException ex)

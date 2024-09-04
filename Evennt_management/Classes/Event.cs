@@ -53,9 +53,9 @@ namespace Evennt_management
 
 
         public void DisplayEvent() { }
-        public void CreateEvent(Event e1)     
+        public void CreateEvent(Event e1, Form f1)     
         {
-            Database.CreateEvent(e1);
+            Database.CreateEvent(e1,f1);
         }
         public void UpdateEvent(Event e1,Form updateEvent) 
         {

@@ -28,9 +28,9 @@ namespace Evennt_management
         
         }
 
-        public void CreateEvent(Event e1)
+        public void CreateEvent(Event e1,Form f1)
         {
-            e1.CreateEvent(e1);
+            e1.CreateEvent(e1,f1);
         }
 
         public void UpdateEvent(Event e1,Form updateEvent)
