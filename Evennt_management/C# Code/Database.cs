@@ -687,7 +687,7 @@ namespace Evennt_management
 
         public static void AdminDeleteEvent(string eventName)
         {
-
+            // username to lower
             string Eventname = eventName.ToLower();
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
