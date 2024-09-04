@@ -28,7 +28,12 @@ namespace Evennt_management
         {
             string username = textBox1.Text;
             Database.AdminDeleteEvent(username);
-            
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

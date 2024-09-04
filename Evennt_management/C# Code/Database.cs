@@ -600,7 +600,7 @@ namespace Evennt_management
                     if (userRole == "organizer")
                     {
                         // If the user is an organizer, delete all their events and tables
-                        DeleteEveryofOrganizer(username);
+                        DeleteEverythingofOrganizer(username);
                     }
 
                     // Delete the user from user_info table
@@ -628,7 +628,7 @@ namespace Evennt_management
             }
         }
 
-        private static void DeleteEveryofOrganizer(string username)
+        private static void DeleteEverythingofOrganizer(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
 
@@ -691,7 +691,7 @@ namespace Evennt_management
             string Eventname = eventName.ToLower();
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
-            string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName";
             string dropTableQuery = $"DROP TABLE IF EXISTS `{Eventname}`";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
