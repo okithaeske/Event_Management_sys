@@ -19,7 +19,7 @@ namespace Evennt_management
         // createing a 
         public static class UserSession
         {
-            public static string CurrentOrganizer { get; set; }
+            public static string CurrentUser { get; set; }
         }
         public static void register(Person person, Form f1)
         {
@@ -323,9 +323,19 @@ namespace Evennt_management
 
         public static void RegisterPerson(string table, string name, int age, int price)
         {
+         
             name = name.ToLower();
+            string Participant = UserSession.CurrentUser; // Get the stored organizer's name
+            if (Participant != name)
+            {
+                MessageBox.Show("Participant is not registered. Please check whether your using the regitsered name.");
+                return;
+            }
+
+
 
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string checkIfRegisteredQuery = $"SELECT COUNT(*) FROM `{table}` WHERE Name = @name";
             string query = $"INSERT INTO `{table}` (Name, Age, Price) VALUES (@name, @age, @price)";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -333,6 +343,18 @@ namespace Evennt_management
                 try
                 {
                     connection.Open();
+
+                    using (MySqlCommand checkCmd = new MySqlCommand(checkIfRegisteredQuery, connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("@name", name);
+                        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Participant is already registered for this event.");
+                            return;
+                        }
+                    }
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@name", name);
@@ -367,9 +389,131 @@ namespace Evennt_management
             }
         }
 
+        public static void GetRegisteredTables(DataGridView dataGridView)
+        {
+            string Participant = UserSession.CurrentUser; // Get the stored Participants's name
+            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string query = "SHOW TABLES";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable allTables = new DataTable();
+                            adapter.Fill(allTables);
+
+                            // Creating a new DataTable to store tables containing the participant
+                            DataTable participantTables = new DataTable();
+                            participantTables.Columns.Add("Joined_Events"); // Column for table names
+
+                            foreach (DataRow row in allTables.Rows)
+                            {
+                                string tableName = row[0].ToString();
+
+                                // Skip the user_info table
+                                if (tableName == "user_info")
+                                    continue;
+
+                                // Check if the participant exists in the table
+                                string checkParticipantQuery = $"SELECT COUNT(*) FROM `{tableName}` WHERE Name = @name";
+                                using (MySqlCommand checkCmd = new MySqlCommand(checkParticipantQuery, connection))
+                                {
+                                    checkCmd.Parameters.AddWithValue("@name", Participant);
+                                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                                    if (count > 0)
+                                    {
+                                        // Add the table name to the participantTables DataTable if the participant exists
+                                        DataRow newRow = participantTables.NewRow();
+                                        newRow["Joined_Events"] = tableName;
+                                        participantTables.Rows.Add(newRow);
+                                    }
+                                }
+                            }
+
+                            // Bind the DataTable to the DataGridView
+                            dataGridView.DataSource = participantTables;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public static void LeaveEvent(string Tablename,Form leave)
+        {
+
+            string Participant = UserSession.CurrentUser; // Get the stored Participants's name
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete he user from the event
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@Name", Participant);
+
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            MessageBox.Show("You have left from the Event Successfully");
+                            Joined_events joined_Events = new Joined_events();
+                            joined_Events.Show();
+                            leave.Hide();
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user found to delete.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public static void DisplayEventsByOrganizer(DataGridView datatable)
         {
-            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            string organizer = UserSession.CurrentUser; // Get the stored organizer's name
             if (string.IsNullOrEmpty(organizer))
             {
                 MessageBox.Show("Organizer not found. Please login again.");
@@ -407,7 +551,7 @@ namespace Evennt_management
 
         public static void UpdateEvent(Event e1, Form updateEvent)
         {
-            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            string organizer = UserSession.CurrentUser; // Get the stored organizer's name
             if (string.IsNullOrEmpty(organizer))
             {
                 MessageBox.Show("Organizer not found. Please login again.");
@@ -464,7 +608,7 @@ namespace Evennt_management
 
         public static void DeleteEvent(string eventName, Form deleteEventForm)
         {
-            string organizer = UserSession.CurrentOrganizer; // Get the stored organizer's name
+            string organizer = UserSession.CurrentUser; // Get the stored organizer's name
             if (string.IsNullOrEmpty(organizer))
             {
                 MessageBox.Show("Organizer not found. Please login again.");

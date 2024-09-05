@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -79,6 +80,13 @@ namespace Evennt_management
         {
             RegisterEvent registerEvent = new RegisterEvent();
             registerEvent.Show();
+            this.Hide();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Joined_events joined_Events = new Joined_events();  
+            joined_Events.Show();
             this.Hide();
         }
     }

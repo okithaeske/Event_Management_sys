@@ -71,7 +71,7 @@ namespace Evennt_management
             
             
             // After validating the login credentials
-            UserSession.CurrentOrganizer = uname; // Replace with actual username
+            UserSession.CurrentUser = uname; // Replace with actual username
             
 
         }

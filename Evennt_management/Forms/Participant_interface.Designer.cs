@@ -81,8 +81,9 @@
             button4.Name = "button4";
             button4.Size = new Size(143, 50);
             button4.TabIndex = 2;
-            button4.Text = "Join Event";
+            button4.Text = "Joined Event";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click_1;
             // 
             // button2
             // 
