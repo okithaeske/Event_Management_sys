@@ -48,6 +48,7 @@ namespace Evennt_management
 
             DateTime dateTime = dateTimePicker1.Value;
             string name = textBox1.Text;
+            string organizer = textBox2.Text;
             string place = textBox5.Text;
             int price = Convert.ToInt32(maskedTextBox1.Text);
             int quantity = Convert.ToInt32(maskedTextBox2.Text);
@@ -55,7 +56,7 @@ namespace Evennt_management
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
-            Event e1 = new Event(date, time, place, price, quantity, name);
+            Event e1 = new Event(date, time, place, price, quantity, name,organizer);
             Organizer org = new Organizer();
             org.CreateEvent(e1, this);
 
@@ -71,7 +72,7 @@ namespace Evennt_management
 
         }
 
-  
+
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -98,11 +99,6 @@ namespace Evennt_management
 
         }
 
-        private void textBox2_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Organizer_interface organizer_Interface = new Organizer_interface();
@@ -123,6 +119,16 @@ namespace Evennt_management
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
             maskedTextBox1.Text = string.Empty;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

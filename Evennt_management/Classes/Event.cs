@@ -27,7 +27,7 @@ namespace Evennt_management
 
         public string CurrentName { get { return currentName; } set { currentName = value; } }
 
-        public Event(string date, string time, string place, int price, int quantity, string name)
+        public Event(string date, string time, string place, int price, int quantity, string name,string organizer)
         {
             this.date = date;
             this.time = time;
@@ -35,6 +35,7 @@ namespace Evennt_management
             this.price = price;
             this.quantity = quantity;
             this.name = name;
+            this.organizer = organizer;
         
             
         }

@@ -16,11 +16,14 @@ namespace Evennt_management
 {
     internal class Database
     {
-        // createing a 
+        // creating a class to store the current user
         public static class UserSession
         {
             public static string CurrentUser { get; set; }
         }
+
+
+        // Insert user information to the databse
         public static void register(Person person, Form f1)
         {
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
@@ -95,6 +98,8 @@ namespace Evennt_management
 
         }
 
+
+        // Get the users username and according to the role direct to the specific interface
         public static void getUser(string username, string password, Form f1)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -154,7 +159,7 @@ namespace Evennt_management
             }
         }
 
-
+        //Get the role of the usersname to be implifes in the polymorphism in login form
         public static string getRole(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -195,13 +200,13 @@ namespace Evennt_management
         }
 
 
-
+        // Create event and insert data into create event table
         public static void CreateEvent(Event e1, Form create)
         {
 
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
-            //string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
-            string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity) VALUES (@event,@date,@time,@place,@price,@quantity)";
+            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
+            string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -209,17 +214,17 @@ namespace Evennt_management
                     connection.Open();
                     //validation to see whether organizer has put his regitsered name
 
-                    //using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
-                    //{
-                    //    checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
-                    //    int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
+                    using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
+                    {
+                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
+                        int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
 
-                    //    if (organizerExists == 0)
-                    //    {
-                    //        MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
-                    //        return;
-                    //    }
-                    //}
+                        if (organizerExists == 0)
+                        {
+                            MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
+                            return;
+                        }
+                    }
 
                     // creating event
 
@@ -231,6 +236,7 @@ namespace Evennt_management
                         cmd.Parameters.AddWithValue("@place", e1.Place);
                         cmd.Parameters.AddWithValue("@price", e1.Price);
                         cmd.Parameters.AddWithValue("@quantity", e1.Quantity);
+                        cmd.Parameters.AddWithValue("@organizer", e1.Organizer);
 
 
                         // Execute the command
@@ -268,7 +274,7 @@ namespace Evennt_management
 
         }
 
-
+        // create a specific table for the created table
         public static void CreateTableForEvent(string tableName)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -302,7 +308,7 @@ namespace Evennt_management
         }
 
 
-
+        // Veiw the created events
         public static void VeiwData(DataGridView datagrid)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -332,6 +338,7 @@ namespace Evennt_management
 
         }
 
+        // Registering particpant into a event
         public static void RegisterPerson(string table, string name, int age, int price)
         {
 
@@ -400,6 +407,7 @@ namespace Evennt_management
             }
         }
 
+        // participant being able to seee the joined events 
         public static void GetRegisteredTables(DataGridView dataGridView)
         {
             string Participant = UserSession.CurrentUser; // Get the stored Participants's name
@@ -464,6 +472,7 @@ namespace Evennt_management
             }
         }
 
+        // participant can leave an event
         public static void LeaveEvent(string Tablename, Form leave)
         {
 
@@ -508,20 +517,7 @@ namespace Evennt_management
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // Organizer can see the events they have created
         public static void DisplayEventsByOrganizer(DataGridView datatable)
         {
             string organizer = UserSession.CurrentUser; // Get the stored organizer's name
@@ -559,7 +555,7 @@ namespace Evennt_management
             }
         }
 
-
+        // update event
         public static void UpdateEvent(Event e1, Form updateEvent)
         {
             string organizer = UserSession.CurrentUser; // Get the stored organizer's name
@@ -671,6 +667,7 @@ namespace Evennt_management
             }
         }
 
+        // View the participants inside a event
         public static void VeiwBookingsData(string Table, DataGridView datagrid)
         {
             Table = Table.ToLower();
@@ -702,7 +699,7 @@ namespace Evennt_management
 
         }
 
-
+        // Veiw user details
         public static void VeiwUserInfo(DataGridView datagrid)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -732,6 +729,8 @@ namespace Evennt_management
 
         }
 
+
+        // Select role if organizer call specific fucntion else delete user
         public static void DeleteUser(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -787,6 +786,7 @@ namespace Evennt_management
             }
         }
 
+        // delete all the events created by specific organizer
         private static void DeleteEverythingofOrganizer(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -843,7 +843,7 @@ namespace Evennt_management
 
         }
 
-
+        // admin delete event
         public static void AdminDeleteEvent(string eventName)
         {
             // username to lower
@@ -890,6 +890,7 @@ namespace Evennt_management
             }
         }
 
+        // Admin kick user from event
         public static void kickUser(string usersName, string Tablename, Form kick)
         {
 

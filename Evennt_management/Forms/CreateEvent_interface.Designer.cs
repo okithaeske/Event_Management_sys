@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateEvent_interface));
             panel1 = new Panel();
+            textBox2 = new TextBox();
             maskedTextBox1 = new MaskedTextBox();
             maskedTextBox2 = new MaskedTextBox();
             dateTimePicker1 = new DateTimePicker();
@@ -43,6 +44,7 @@
             label4 = new Label();
             label6 = new Label();
             label7 = new Label();
+            label5 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,6 +53,8 @@
             panel1.BackColor = Color.LavenderBlush;
             panel1.BackgroundImageLayout = ImageLayout.Center;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(textBox2);
             panel1.Controls.Add(maskedTextBox1);
             panel1.Controls.Add(maskedTextBox2);
             panel1.Controls.Add(dateTimePicker1);
@@ -71,6 +75,14 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(618, 134);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(226, 30);
+            textBox2.TabIndex = 2;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
             // maskedTextBox1
             // 
             maskedTextBox1.Location = new Point(185, 339);
@@ -84,7 +96,7 @@
             // 
             // maskedTextBox2
             // 
-            maskedTextBox2.Location = new Point(623, 303);
+            maskedTextBox2.Location = new Point(618, 338);
             maskedTextBox2.Mask = "00000";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.PromptChar = ' ';
@@ -126,7 +138,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(623, 200);
+            textBox5.Location = new Point(618, 235);
             textBox5.Margin = new Padding(4, 3, 4, 3);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(226, 30);
@@ -192,7 +204,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(477, 201);
+            label6.Location = new Point(472, 236);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(51, 23);
@@ -203,12 +215,22 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(478, 303);
+            label7.Location = new Point(473, 338);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(80, 23);
             label7.TabIndex = 6;
             label7.Text = "Quantity";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(473, 141);
+            label5.Name = "label5";
+            label5.Size = new Size(141, 23);
+            label5.TabIndex = 1;
+            label5.Text = "Organizer Name";
+            label5.Click += label5_Click;
             // 
             // CreateEvent_interface
             // 
@@ -243,5 +265,7 @@
         private DateTimePicker dateTimePicker1;
         private MaskedTextBox maskedTextBox2;
         private MaskedTextBox maskedTextBox1;
+        private TextBox textBox2;
+        private Label label5;
     }
 }

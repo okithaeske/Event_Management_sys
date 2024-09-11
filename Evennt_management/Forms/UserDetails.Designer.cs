@@ -78,7 +78,7 @@
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Name = "UserDetails";
-            Text = "UserDetails";
+            Text = "admsk";
             Load += UserDetails_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
