@@ -39,8 +39,8 @@ namespace Evennt_management
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
              string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
-             string.IsNullOrWhiteSpace(textBox6.Text) ||
-             string.IsNullOrWhiteSpace(textBox3.Text) ||
+             string.IsNullOrWhiteSpace(maskedTextBox2.Text) ||
+             string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
              string.IsNullOrWhiteSpace(textBox4.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -51,15 +51,15 @@ namespace Evennt_management
             string name = textBox1.Text;
             string organizer = textBox4.Text;
             string place = textBox5.Text;
-            int price = Convert.ToInt32(textBox3.Text);
-            int quantity = Convert.ToInt32(textBox6.Text);
+            int price = Convert.ToInt32(maskedTextBox1.Text);
+            int quantity = Convert.ToInt32(maskedTextBox2.Text);
 
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
             Event e1 = new Event(date, time, place, price, quantity, name, organizer);
             Organizer org = new Organizer();
-            org.CreateEvent(e1,this);
+            org.CreateEvent(e1, this);
 
 
 
@@ -118,6 +118,16 @@ namespace Evennt_management
         private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            maskedTextBox2.Text = string.Empty;
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            maskedTextBox1.Text = string.Empty;
         }
     }
 }

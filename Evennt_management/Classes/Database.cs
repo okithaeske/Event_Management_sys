@@ -197,6 +197,8 @@ namespace Evennt_management
 
         public static void CreateEvent(Event e1, Form create)
         {
+            string Participant = UserSession.CurrentUser; // Get the stored organizer's name
+
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
             string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
@@ -335,7 +337,7 @@ namespace Evennt_management
         {
          
             name = name.ToLower();
-            string Participant = UserSession.CurrentUser; // Get the stored organizer's name
+            string Participant = UserSession.CurrentUser; // Get the stored participants's name
             if (Participant != name)
             {
                 MessageBox.Show("Participant is not registered. Please check whether your using the regitsered name.");
