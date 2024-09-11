@@ -171,12 +171,18 @@ namespace Evennt_management
 
 
                     string role = cmd.ExecuteScalar()?.ToString();
-
-                    return role.ToLower();
+                    if (role != null) {
+                        return role.ToLower();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username and password");
+                        return "";
+                       
+                    }
+                 
 
                 }
-
-
                 catch (MySqlException ex)
                 {
                     MessageBox.Show(ex.Message);

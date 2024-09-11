@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using static Evennt_management.Database;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -45,6 +46,14 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
+            string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method without further processing
+            }
+
             string uname = textBox1.Text;
             string password = textBox2.Text;
 
