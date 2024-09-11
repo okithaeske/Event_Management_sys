@@ -35,14 +35,14 @@
             label6 = new Label();
             label7 = new Label();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
             panel1 = new Panel();
+            maskedTextBox1 = new MaskedTextBox();
+            linkLabel1 = new LinkLabel();
             radioButton3 = new RadioButton();
             radioButton1 = new RadioButton();
             button1 = new Button();
-            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -114,14 +114,6 @@
             textBox1.TabIndex = 7;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(128, 126);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(216, 27);
-            textBox2.TabIndex = 8;
-            textBox2.TextChanged += textBox2_TextChanged;
-            // 
             // textBox5
             // 
             textBox5.Location = new Point(128, 214);
@@ -142,6 +134,7 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(maskedTextBox1);
             panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(radioButton3);
             panel1.Controls.Add(radioButton1);
@@ -155,12 +148,33 @@
             panel1.Controls.Add(textBox5);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox2);
             panel1.Location = new Point(40, 57);
             panel1.Name = "panel1";
             panel1.Size = new Size(370, 438);
             panel1.TabIndex = 13;
             panel1.Paint += panel1_Paint;
+            // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(128, 126);
+            maskedTextBox1.Mask = "00000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.PromptChar = ' ';
+            maskedTextBox1.Size = new Size(216, 27);
+            maskedTextBox1.TabIndex = 17;
+            maskedTextBox1.ValidatingType = typeof(int);
+            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(17, 402);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 14;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // radioButton3
             // 
@@ -196,17 +210,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(17, 402);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(40, 20);
-            linkLabel1.TabIndex = 14;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "back";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -231,7 +234,6 @@
         private Label label6;
         private Label label7;
         private TextBox textBox1;
-        private TextBox textBox2;
         private TextBox textBox5;
         private TextBox textBox6;
         private Panel panel1;
@@ -239,5 +241,6 @@
         private RadioButton radioButton3;
         private RadioButton radioButton1;
         private LinkLabel linkLabel1;
+        private MaskedTextBox maskedTextBox1;
     }
 }

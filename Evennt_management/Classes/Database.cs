@@ -171,8 +171,12 @@ namespace Evennt_management
 
 
                     string role = cmd.ExecuteScalar()?.ToString();
+
                     return role.ToLower();
+
                 }
+
+
                 catch (MySqlException ex)
                 {
                     MessageBox.Show(ex.Message);

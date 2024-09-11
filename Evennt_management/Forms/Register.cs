@@ -50,7 +50,7 @@ namespace Evennt_management
         private void button1_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-              string.IsNullOrWhiteSpace(textBox2.Text) ||
+              string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
               string.IsNullOrWhiteSpace(textBox5.Text) ||
               string.IsNullOrWhiteSpace(textBox6.Text) ||
               string.IsNullOrWhiteSpace(radioButton1.Text) ||
@@ -77,7 +77,7 @@ namespace Evennt_management
 
 
             string name = textBox1.Text;
-            int age = Convert.ToInt32(textBox2.Text);
+            int age = Convert.ToInt32(maskedTextBox1.Text);
             string role = selectedValue.ToLower();
             string userName = textBox5.Text;
             string password = textBox6.Text;
@@ -152,5 +152,12 @@ namespace Evennt_management
             login.Show();
             this.Hide();
         }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            maskedTextBox1.Text = string.Empty;
+        }
+
+    
     }
 }
