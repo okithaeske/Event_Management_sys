@@ -20,8 +20,8 @@ namespace Evennt_management
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CreateEvent_interface createEvent_Interface = new CreateEvent_interface();
-            createEvent_Interface.Show();
+            CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
+            createdEvent_Interface.Show();
             this.Hide();
         }
 

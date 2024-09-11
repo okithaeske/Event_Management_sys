@@ -30,21 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateEvent_interface));
             panel1 = new Panel();
+            maskedTextBox1 = new MaskedTextBox();
             maskedTextBox2 = new MaskedTextBox();
             dateTimePicker1 = new DateTimePicker();
             linkLabel1 = new LinkLabel();
             button1 = new Button();
             textBox5 = new TextBox();
-            textBox4 = new TextBox();
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,13 +57,11 @@
             panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(textBox5);
-            panel1.Controls.Add(textBox4);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(label5);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
             panel1.Location = new Point(36, 25);
@@ -75,9 +71,20 @@
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(185, 339);
+            maskedTextBox1.Mask = "00000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.PromptChar = ' ';
+            maskedTextBox1.Size = new Size(249, 30);
+            maskedTextBox1.TabIndex = 1;
+            maskedTextBox1.ValidatingType = typeof(int);
+            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
+            // 
             // maskedTextBox2
             // 
-            maskedTextBox2.Location = new Point(618, 339);
+            maskedTextBox2.Location = new Point(623, 303);
             maskedTextBox2.Mask = "00000";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.PromptChar = ' ';
@@ -119,21 +126,12 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(618, 236);
+            textBox5.Location = new Point(623, 200);
             textBox5.Margin = new Padding(4, 3, 4, 3);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(226, 30);
             textBox5.TabIndex = 11;
             textBox5.TextChanged += textBox5_TextChanged;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(618, 140);
-            textBox4.Margin = new Padding(4, 3, 4, 3);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(226, 30);
-            textBox4.TabIndex = 10;
-            textBox4.TextChanged += textBox4_TextChanged;
             // 
             // textBox1
             // 
@@ -191,20 +189,10 @@
             label4.TabIndex = 3;
             label4.Text = "Price";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(472, 144);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(138, 23);
-            label5.TabIndex = 4;
-            label5.Text = "Organizer name";
-            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(472, 237);
+            label6.Location = new Point(477, 201);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(51, 23);
@@ -215,23 +203,12 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(473, 339);
+            label7.Location = new Point(478, 303);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(80, 23);
             label7.TabIndex = 6;
             label7.Text = "Quantity";
-            // 
-            // maskedTextBox1
-            // 
-            maskedTextBox1.Location = new Point(185, 339);
-            maskedTextBox1.Mask = "00000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.PromptChar = ' ';
-            maskedTextBox1.Size = new Size(249, 30);
-            maskedTextBox1.TabIndex = 1;
-            maskedTextBox1.ValidatingType = typeof(int);
-            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             // 
             // CreateEvent_interface
             // 
@@ -256,12 +233,10 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private Label label6;
         private Label label7;
         private Label label1;
         private TextBox textBox5;
-        private TextBox textBox4;
         private TextBox textBox1;
         private Button button1;
         private LinkLabel linkLabel1;

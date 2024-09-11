@@ -171,16 +171,17 @@ namespace Evennt_management
 
 
                     string role = cmd.ExecuteScalar()?.ToString();
-                    if (role != null) {
+                    if (role != null)
+                    {
                         return role.ToLower();
                     }
                     else
                     {
                         MessageBox.Show("Invalid username and password");
                         return "";
-                       
+
                     }
-                 
+
 
                 }
                 catch (MySqlException ex)
@@ -197,29 +198,28 @@ namespace Evennt_management
 
         public static void CreateEvent(Event e1, Form create)
         {
-            string Participant = UserSession.CurrentUser; // Get the stored organizer's name
 
             string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
-            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
-            string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
+            //string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
+            string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity) VALUES (@event,@date,@time,@place,@price,@quantity)";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
-                    // validation to see whether organizer has put his regitsered name
+                    //validation to see whether organizer has put his regitsered name
 
-                    using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
-                    {
-                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
-                        int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
+                    //using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
+                    //{
+                    //    checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
+                    //    int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
 
-                        if (organizerExists == 0)
-                        {
-                            MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
-                            return;
-                        }
-                    }
+                    //    if (organizerExists == 0)
+                    //    {
+                    //        MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
+                    //        return;
+                    //    }
+                    //}
 
                     // creating event
 
@@ -231,7 +231,6 @@ namespace Evennt_management
                         cmd.Parameters.AddWithValue("@place", e1.Place);
                         cmd.Parameters.AddWithValue("@price", e1.Price);
                         cmd.Parameters.AddWithValue("@quantity", e1.Quantity);
-                        cmd.Parameters.AddWithValue("@organizer", e1.Organizer);
 
 
                         // Execute the command
@@ -292,7 +291,7 @@ namespace Evennt_management
                     using (MySqlCommand createTableCmd = new MySqlCommand(createTableQuery, connection))
                     {
                         createTableCmd.ExecuteNonQuery();
-                    
+
                     }
                 }
                 catch (MySqlException ex)
@@ -335,7 +334,7 @@ namespace Evennt_management
 
         public static void RegisterPerson(string table, string name, int age, int price)
         {
-         
+
             name = name.ToLower();
             string Participant = UserSession.CurrentUser; // Get the stored participants's name
             if (Participant != name)
@@ -465,7 +464,7 @@ namespace Evennt_management
             }
         }
 
-        public static void LeaveEvent(string Tablename,Form leave)
+        public static void LeaveEvent(string Tablename, Form leave)
         {
 
             string Participant = UserSession.CurrentUser; // Get the stored Participants's name
@@ -891,9 +890,9 @@ namespace Evennt_management
             }
         }
 
-        public static void kickUser(string usersName,string Tablename , Form kick)
+        public static void kickUser(string usersName, string Tablename, Form kick)
         {
-       
+
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
@@ -919,7 +918,7 @@ namespace Evennt_management
                             ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
                             viewBookingsadm_Interface.Show();
                             kick.Hide();
-                            
+
 
                         }
                         else

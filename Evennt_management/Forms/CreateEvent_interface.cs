@@ -40,8 +40,7 @@ namespace Evennt_management
              string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
              string.IsNullOrWhiteSpace(maskedTextBox2.Text) ||
-             string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
-             string.IsNullOrWhiteSpace(textBox4.Text))
+             string.IsNullOrWhiteSpace(maskedTextBox1.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
@@ -49,7 +48,6 @@ namespace Evennt_management
 
             DateTime dateTime = dateTimePicker1.Value;
             string name = textBox1.Text;
-            string organizer = textBox4.Text;
             string place = textBox5.Text;
             int price = Convert.ToInt32(maskedTextBox1.Text);
             int quantity = Convert.ToInt32(maskedTextBox2.Text);
@@ -57,7 +55,7 @@ namespace Evennt_management
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
-            Event e1 = new Event(date, time, place, price, quantity, name, organizer);
+            Event e1 = new Event(date, time, place, price, quantity, name);
             Organizer org = new Organizer();
             org.CreateEvent(e1, this);
 
@@ -73,10 +71,7 @@ namespace Evennt_management
 
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
