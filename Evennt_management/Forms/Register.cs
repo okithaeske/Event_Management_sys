@@ -70,18 +70,24 @@ namespace Evennt_management
             {
                 selectedValue = radioButton3.Text;
             }
+            else
+            {
+                MessageBox.Show("All fields are required. Please fill in role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
             string name = textBox1.Text;
             int age = Convert.ToInt32(textBox2.Text);
             string role = selectedValue.ToLower();
             string userName = textBox5.Text;
             string password = textBox6.Text;
 
-          
+
             if (role == "organizer")
             {
                 Person person = new Organizer(name, age, role, userName, password);
                 person.Register(person, this);
-                
+
 
             }
             else if (role == "participant")
@@ -138,6 +144,13 @@ namespace Evennt_management
         private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
     }
 }

@@ -124,6 +124,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(411, 428);
             panel1.TabIndex = 8;
+            panel1.Paint += panel1_Paint;
             // 
             // Login
             // 

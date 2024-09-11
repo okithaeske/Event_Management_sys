@@ -42,6 +42,7 @@
             radioButton3 = new RadioButton();
             radioButton1 = new RadioButton();
             button1 = new Button();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -141,6 +142,7 @@
             // 
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(radioButton3);
             panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(button1);
@@ -194,6 +196,17 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(17, 402);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 14;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -225,5 +238,6 @@
         private Button button1;
         private RadioButton radioButton3;
         private RadioButton radioButton1;
+        private LinkLabel linkLabel1;
     }
 }

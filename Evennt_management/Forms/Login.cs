@@ -63,20 +63,25 @@ namespace Evennt_management
             }
             else if (role == "participant")
             {
-                Person person = new Participant(uname,password);
-                person.login(uname, password,this);
-            
+                Person person = new Participant(uname, password);
+                person.login(uname, password, this);
+
             }
 
-            
-            
+
+
             // After validating the login credentials
             UserSession.CurrentUser = uname; // Replace with actual username
-            
+
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
