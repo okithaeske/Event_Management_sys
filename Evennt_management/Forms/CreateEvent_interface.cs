@@ -47,7 +47,9 @@ namespace Evennt_management
             }
 
             DateTime dateTime = dateTimePicker1.Value;
-            string name = textBox1.Text;
+            string eventname = textBox1.Text;
+            // Remove whitespaces
+            string name = eventname.Replace(" ", "");
             string organizer = textBox2.Text;
             string place = textBox5.Text;
             int price = Convert.ToInt32(maskedTextBox1.Text);

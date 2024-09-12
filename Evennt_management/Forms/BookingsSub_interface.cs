@@ -37,7 +37,10 @@ namespace Evennt_management
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
-            string tableName = textBox1.Text;
+            string tName = textBox1.Text;
+            // Remove whitespaces
+            string tableName = tName.Replace(" ", "");
+
             Organizer.TableName = tableName;
 
             ViewBookings_interface veiwBookings_Interface = new ViewBookings_interface();

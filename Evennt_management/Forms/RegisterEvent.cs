@@ -57,7 +57,9 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
-            string eventName = textBox2.Text;
+            string eName = textBox2.Text;
+            // Remove whitespaces
+            string eventName = eName.Replace(" ", "");
             string pname = textBox1.Text;
             int age = Convert.ToInt32(textBox3.Text);
             int price = Convert.ToInt32(textBox4.Text);

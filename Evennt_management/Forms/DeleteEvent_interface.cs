@@ -33,7 +33,9 @@ namespace Evennt_management
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
-            string eventname = textBox1.Text;
+            string name = textBox1.Text;
+            // Remove whitespaces
+            string eventname = name.Replace(" ", "");
             Database.DeleteEvent(eventname,this);
         }
 

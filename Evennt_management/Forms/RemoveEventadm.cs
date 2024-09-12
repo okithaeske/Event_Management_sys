@@ -26,8 +26,10 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            Database.AdminDeleteEvent(username);
+            string ename = textBox1.Text;
+            // Remove whitespaces
+            string EventName = ename.Replace(" ", "");
+            Database.AdminDeleteEvent(EventName);
 
         }
 

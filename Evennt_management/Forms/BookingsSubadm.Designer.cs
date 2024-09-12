@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingsSubadm));
             panel1 = new Panel();
+            button1 = new Button();
             label1 = new Label();
             label2 = new Label();
             linkLabel1 = new LinkLabel();
             textBox1 = new TextBox();
-            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,6 +49,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(724, 371);
             panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(307, 295);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 5;
+            button1.Text = "Confirm";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -87,16 +97,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(210, 27);
             textBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(307, 295);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "Confirm";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // BookingsSubadm
             // 
