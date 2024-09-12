@@ -159,6 +159,7 @@ namespace Evennt_management
             }
         }
 
+
         //Get the role of the usersname to be implifes in the polymorphism in login form
         public static string getRole(string username)
         {
@@ -274,6 +275,7 @@ namespace Evennt_management
 
         }
 
+
         // create a specific table for the created table
         public static void CreateTableForEvent(string tableName)
         {
@@ -338,6 +340,7 @@ namespace Evennt_management
 
         }
 
+
         // Registering particpant into a event
         public static void RegisterPerson(string table, string name, int age, int price)
         {
@@ -356,6 +359,11 @@ namespace Evennt_management
             string checkIfRegisteredQuery = $"SELECT COUNT(*) FROM `{table}` WHERE Name = @name";
             string query = $"INSERT INTO `{table}` (Name, Age, Price) VALUES (@name, @age, @price)";
 
+            // Get limit for the event
+            string totalRegistrationsQuery = $"SELECT COUNT(*) FROM `{table}`";
+            string eventQuantityQuery = "SELECT Quantity FROM createevent WHERE LOWER(Name) = @eventName";
+
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -373,6 +381,28 @@ namespace Evennt_management
                             return;
                         }
                     }
+                    // Step 2: Get the total number of registrations for the event
+                    int totalRegistrations = 0;
+                    using (MySqlCommand totalRegistrationsCmd = new MySqlCommand(totalRegistrationsQuery, connection))
+                    {
+                        totalRegistrations = Convert.ToInt32(totalRegistrationsCmd.ExecuteScalar());
+                    }
+                    // Step 3: Get the event's quantity limit
+                    int eventQuantity = 0;
+                    using (MySqlCommand eventQuantityCmd = new MySqlCommand(eventQuantityQuery, connection))
+                    {
+                        eventQuantityCmd.Parameters.AddWithValue("@eventName", table.ToLower()); // Event name is the table name
+                        eventQuantity = Convert.ToInt32(eventQuantityCmd.ExecuteScalar());
+                    }
+
+                    // Step 4: Check if the total registrations exceed the event's limit
+                    if (totalRegistrations >= eventQuantity)
+                    {
+                        MessageBox.Show("Event is fully booked. No more registrations are allowed.");
+                        return;
+                    }
+
+
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@name", name);
@@ -406,6 +436,7 @@ namespace Evennt_management
                 }
             }
         }
+
 
         // participant being able to seee the joined events 
         public static void GetRegisteredTables(DataGridView dataGridView)
@@ -472,6 +503,7 @@ namespace Evennt_management
             }
         }
 
+
         // participant can leave an event
         public static void LeaveEvent(string Tablename, Form leave)
         {
@@ -517,6 +549,7 @@ namespace Evennt_management
             }
         }
 
+
         // Organizer can see the events they have created
         public static void DisplayEventsByOrganizer(DataGridView datatable)
         {
@@ -554,6 +587,7 @@ namespace Evennt_management
                 }
             }
         }
+
 
         // update event
         public static void UpdateEvent(Event e1, Form updateEvent)
@@ -613,6 +647,8 @@ namespace Evennt_management
             }
         }
 
+
+        // Delete Event
         public static void DeleteEvent(string eventName, Form deleteEventForm)
         {
             string organizer = UserSession.CurrentUser; // Get the stored organizer's name
@@ -667,6 +703,7 @@ namespace Evennt_management
             }
         }
 
+
         // View the participants inside a event
         public static void VeiwBookingsData(string Table, DataGridView datagrid)
         {
@@ -698,6 +735,7 @@ namespace Evennt_management
             }
 
         }
+
 
         // Veiw user details
         public static void VeiwUserInfo(DataGridView datagrid)
@@ -786,6 +824,7 @@ namespace Evennt_management
             }
         }
 
+
         // delete all the events created by specific organizer
         private static void DeleteEverythingofOrganizer(string username)
         {
@@ -843,6 +882,7 @@ namespace Evennt_management
 
         }
 
+
         // admin delete event
         public static void AdminDeleteEvent(string eventName)
         {
@@ -889,6 +929,7 @@ namespace Evennt_management
                 }
             }
         }
+
 
         // Admin kick user from event
         public static void kickUser(string usersName, string Tablename, Form kick)
