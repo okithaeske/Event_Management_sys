@@ -35,11 +35,11 @@ namespace Evennt_management
         {
 
             if
-             (string.IsNullOrWhiteSpace(textBox6.Text)||
+             (string.IsNullOrWhiteSpace(textBox6.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
              string.IsNullOrWhiteSpace(textBox2.Text) ||
-             string.IsNullOrWhiteSpace(textBox3.Text) ||
-             string.IsNullOrWhiteSpace(textBox4.Text))
+             string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
+             string.IsNullOrWhiteSpace(maskedTextBox2.Text))
             {
                 MessageBox.Show("All fields are required. Please enter in all the feilds", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
@@ -53,8 +53,8 @@ namespace Evennt_management
             // Remove whitespaces
             string currentname = cname.Replace(" ", "");
             string newplace = textBox2.Text;
-            int newprice = int.Parse(textBox3.Text);
-            int newquantity = Convert.ToInt32(textBox4.Text);
+            int newprice = int.Parse(maskedTextBox1.Text);
+            int newquantity = Convert.ToInt32(maskedTextBox2.Text);
 
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
@@ -124,6 +124,16 @@ namespace Evennt_management
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            maskedTextBox1.Text = string.Empty;
+        }
+
+        private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            maskedTextBox2.Text = string.Empty;
         }
     }
 }

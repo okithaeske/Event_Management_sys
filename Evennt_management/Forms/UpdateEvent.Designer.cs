@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateEvent));
             panel1 = new Panel();
+            maskedTextBox2 = new MaskedTextBox();
+            maskedTextBox1 = new MaskedTextBox();
             dateTimePicker1 = new DateTimePicker();
             textBox6 = new TextBox();
             label7 = new Label();
@@ -37,8 +39,6 @@
             label6 = new Label();
             button1 = new Button();
             linkLabel1 = new LinkLabel();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
             textBox2 = new TextBox();
             label5 = new Label();
             label4 = new Label();
@@ -50,6 +50,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(maskedTextBox2);
+            panel1.Controls.Add(maskedTextBox1);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(textBox6);
             panel1.Controls.Add(label7);
@@ -57,8 +59,6 @@
             panel1.Controls.Add(label6);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(linkLabel1);
-            panel1.Controls.Add(textBox4);
-            panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
@@ -70,6 +70,28 @@
             panel1.Size = new Size(906, 507);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // maskedTextBox2
+            // 
+            maskedTextBox2.Location = new Point(580, 324);
+            maskedTextBox2.Mask = "00000";
+            maskedTextBox2.Name = "maskedTextBox2";
+            maskedTextBox2.PromptChar = ' ';
+            maskedTextBox2.Size = new Size(241, 27);
+            maskedTextBox2.TabIndex = 17;
+            maskedTextBox2.ValidatingType = typeof(int);
+            maskedTextBox2.MaskInputRejected += maskedTextBox2_MaskInputRejected;
+            // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(175, 324);
+            maskedTextBox1.Mask = "00000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.PromptChar = ' ';
+            maskedTextBox1.Size = new Size(241, 27);
+            maskedTextBox1.TabIndex = 16;
+            maskedTextBox1.ValidatingType = typeof(int);
+            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             // 
             // dateTimePicker1
             // 
@@ -139,22 +161,6 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Back";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(580, 320);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(241, 27);
-            textBox4.TabIndex = 8;
-            textBox4.TextChanged += textBox4_TextChanged;
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(175, 320);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(241, 27);
-            textBox3.TabIndex = 7;
-            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox2
             // 
@@ -232,8 +238,6 @@
 
         #endregion
         private Panel panel1;
-        private TextBox textBox4;
-        private TextBox textBox3;
         private TextBox textBox2;
         private Label label5;
         private Label label4;
@@ -247,5 +251,7 @@
         private TextBox textBox6;
         private Label label7;
         private DateTimePicker dateTimePicker1;
+        private MaskedTextBox maskedTextBox2;
+        private MaskedTextBox maskedTextBox1;
     }
 }
