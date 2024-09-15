@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateEvent));
             panel1 = new Panel();
+            dateTimePicker1 = new DateTimePicker();
             textBox6 = new TextBox();
             label7 = new Label();
             textBox5 = new TextBox();
@@ -44,7 +45,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            dateTimePicker1 = new DateTimePicker();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,6 +70,17 @@
             panel1.Size = new Size(906, 507);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            dateTimePicker1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Location = new Point(175, 219);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(241, 30);
+            dateTimePicker1.TabIndex = 15;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // textBox6
             // 
@@ -199,20 +210,10 @@
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(357, 26);
             label1.Name = "label1";
-            label1.Size = new Size(209, 41);
+            label1.Size = new Size(206, 41);
             label1.TabIndex = 0;
-            label1.Text = "Update Table";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            dateTimePicker1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(175, 219);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(241, 30);
-            dateTimePicker1.TabIndex = 15;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            label1.Text = "Update Event";
+            label1.Click += label1_Click;
             // 
             // UpdateEvent
             // 

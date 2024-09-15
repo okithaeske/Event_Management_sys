@@ -58,13 +58,26 @@ namespace Evennt_management
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
+            //limitation
+
+            if (name.Length < 4)
+            {
+                MessageBox.Show("Event Name must be at least 4 characters long.");
+            }
+            if (place.Length < 4)
+            {
+                MessageBox.Show("Place must be at least 4 characters long.");
+            }
+            if (price < 0)
+            {
+                MessageBox.Show("Price cannot be a negative value.");
+            }
+   
+
+
             Event e1 = new Event(date, time, place, price, quantity, name,organizer);
             Organizer org = new Organizer();
             org.CreateEvent(e1, this);
-
-
-
-
 
 
         }

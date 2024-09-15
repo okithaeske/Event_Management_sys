@@ -35,13 +35,13 @@ namespace Evennt_management
         {
 
             if
-             (string.IsNullOrWhiteSpace(textBox6.Text) ||
+             (string.IsNullOrWhiteSpace(textBox6.Text)||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
              string.IsNullOrWhiteSpace(textBox2.Text) ||
              string.IsNullOrWhiteSpace(textBox3.Text) ||
              string.IsNullOrWhiteSpace(textBox4.Text))
             {
-                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("All fields are required. Please enter in all the feilds", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
 
@@ -59,8 +59,25 @@ namespace Evennt_management
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
+
+            if (newName.Length < 4)
+            {
+                MessageBox.Show(" New Event Name must be at least 4 characters long.");
+            }
+
+
+            if (newplace.Length < 4)
+            {
+                MessageBox.Show("Place must be at least 4 characters long.");
+            }
+            if (newprice < 0)
+            {
+                MessageBox.Show("Price cannot be a negative value.");
+            }
+
+
             //Database.UpdateEvent(newName, currentname, date, time, newplace, newprice, newquantity, this);
-            Event e1 = new Event(currentname,date, time, newplace, newprice, newquantity, newName);
+            Event e1 = new Event(currentname, date, time, newplace, newprice, newquantity, newName);
             Organizer org1 = new Organizer();
             org1.UpdateEvent(e1, this);
 
@@ -100,6 +117,11 @@ namespace Evennt_management
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

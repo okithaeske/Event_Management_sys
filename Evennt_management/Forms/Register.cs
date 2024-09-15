@@ -86,7 +86,7 @@ namespace Evennt_management
 
             // limitations
 
-            if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
+            if (name.Length < 3)
             {
                 MessageBox.Show("Name must be at least 3 characters long.");
             }
@@ -103,7 +103,7 @@ namespace Evennt_management
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+            if (password.Length < 8)
             {
                 MessageBox.Show("Password must be at least 8 characters long.");
                 return;

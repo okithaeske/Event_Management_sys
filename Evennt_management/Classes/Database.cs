@@ -71,7 +71,7 @@ namespace Evennt_management
 
                         if (result == 1)
                         {
-                            MessageBox.Show("successful!");
+                            MessageBox.Show("successfully Regitsered!");
                             Login log = new Login();
                             log.Show();
                             f1.Hide();
@@ -160,7 +160,7 @@ namespace Evennt_management
         }
 
 
-        //Get the role of the usersname to be implifes in the polymorphism in login form
+        //Get the role of the usersname to be implifed in the polymorphism in login form
         public static string getRole(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
