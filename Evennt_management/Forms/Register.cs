@@ -49,6 +49,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // to see whether all the textboxes are filled before submition
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
               string.IsNullOrWhiteSpace(maskedTextBox1.Text) ||
               string.IsNullOrWhiteSpace(textBox5.Text) ||
@@ -59,6 +60,7 @@ namespace Evennt_management
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
+
 
             string selectedValue = "";
 
@@ -72,7 +74,7 @@ namespace Evennt_management
             }
             else
             {
-                MessageBox.Show("All fields are required. Please fill in role.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("All fields are required. Role cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -81,6 +83,32 @@ namespace Evennt_management
             string role = selectedValue.ToLower();
             string userName = textBox5.Text;
             string password = textBox6.Text;
+
+            // limitations
+
+            if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
+            {
+                MessageBox.Show("Name must be at least 3 characters long.");
+            }
+
+            if (age <= 12)
+            {
+                MessageBox.Show("Age must be greater than 12.");
+                return;
+            }
+
+            if (userName.Length < 5)
+            {
+                MessageBox.Show("Username must be at least 5 characters long.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+            {
+                MessageBox.Show("Password must be at least 8 characters long.");
+                return;
+            }
+
 
 
             if (role == "organizer")
@@ -158,6 +186,6 @@ namespace Evennt_management
             maskedTextBox1.Text = string.Empty;
         }
 
-    
+
     }
 }
