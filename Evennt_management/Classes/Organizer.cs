@@ -10,7 +10,7 @@ using System.Data;
 using Evennt_management.Classes.Controller_Classes;
 namespace Evennt_management
 {
-    internal class Organizer : Person, Validations
+    internal class Organizer : Person,Validations
     {
      
         public static string TableName { get; set; }

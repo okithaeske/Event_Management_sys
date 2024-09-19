@@ -64,7 +64,7 @@ namespace Evennt_management
             int age = Convert.ToInt32(textBox3.Text);
             int price = Convert.ToInt32(textBox4.Text);
 
-            Participant p1 = new Participant(); 
+            Participant p1 = new Participant();
             p1.JoinEvent(eventName, pname, age, price);
 
         }
@@ -77,6 +77,11 @@ namespace Evennt_management
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegisterEvent_Load(object sender, EventArgs e)
+        {
+            Database.VeiwData(dataGridView1);
         }
     }
 }

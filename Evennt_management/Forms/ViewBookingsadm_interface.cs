@@ -32,7 +32,9 @@ namespace Evennt_management.Forms
         private void ViewBookingsadm_interface_Load(object sender, EventArgs e)
         {
             string tableName = Organizer.TableName;
-            Database.VeiwBookingsData(tableName, dataGridView1);
+            Admin o1 = new Admin();
+            Validations OrgAdmInterface = new Admin();
+            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
 
         }
 

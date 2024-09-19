@@ -25,7 +25,9 @@ namespace Evennt_management
         private void VeiwBookings_interface_Load(object sender, EventArgs e)
         {
             string tableName = Organizer.TableName;
-            Database.VeiwBookingsData(tableName, dataGridView1);
+            Organizer o1 = new Organizer();
+            Validations OrgAdmInterface = new Organizer();
+            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

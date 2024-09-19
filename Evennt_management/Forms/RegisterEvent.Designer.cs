@@ -41,7 +41,9 @@
             label2 = new Label();
             linkLabel1 = new LinkLabel();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -58,7 +60,7 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(39, 37);
+            panel1.Location = new Point(23, 37);
             panel1.Name = "panel1";
             panel1.Size = new Size(452, 462);
             panel1.TabIndex = 0;
@@ -170,6 +172,15 @@
             label1.TabIndex = 0;
             label1.Text = "Register Event";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(473, 37);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(484, 462);
+            dataGridView1.TabIndex = 1;
+            // 
             // RegisterEvent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -177,11 +188,14 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(985, 550);
+            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "RegisterEvent";
             Text = "RegisterEvent";
+            Load += RegisterEvent_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -199,5 +213,6 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Button button1;
+        private DataGridView dataGridView1;
     }
 }
