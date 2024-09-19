@@ -37,10 +37,10 @@ namespace Evennt_management
             string name = textBox1.Text;
             // Remove whitespaces
             string eventname = name.Replace(" ", "");
-            Event e1 = new Event();
-            e1.DeleteEvent(eventname, this);
 
-            //EventController.DeleteEvent(eventname,this);
+            Organizer o1 = new Organizer();
+            o1.RemoveEvent(eventname,this, "CreatedEvent");
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

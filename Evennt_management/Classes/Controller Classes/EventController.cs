@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Evennt_management.Forms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -174,45 +175,84 @@ namespace Evennt_management.Classes.Controller_Classes
         }
 
         // Delete Event
-        public static void DeleteEvent(string eventName, Form deleteEventForm)
+        public static void DeleteEvent(string eventName, Form deleteEventForm, string targetInterface)
         {
-            string organizer = UserSession.CurrentUser; // Get the stored organizer's name
-            if (string.IsNullOrEmpty(organizer))
+            string currentUser = UserSession.CurrentUser; // Get the stored current user's name
+            if (string.IsNullOrEmpty(currentUser))
             {
-                MessageBox.Show("Organizer not found. Please login again.");
+                MessageBox.Show("User not found. Please login again.");
                 return;
             }
 
-            string Eventname = eventName.ToLower();
 
-            string deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
-            string dropTableQuery = $"DROP TABLE IF EXISTS `{Eventname}`";
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery;
+            string dropTableQuery = $"DROP TABLE IF EXISTS `{eventName}`";
 
-            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
+            // Check if the target interface is for CreatedEvent or Admin
+            if (targetInterface == "CreatedEvent")
+            {
+                // Organizer logic: Can only delete their own event
+                deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            }
+            else if (targetInterface == "admin")
+            {
+                // Admin logic: Can delete any event without restriction
+                deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName";
+            }
+            else
+            {
+                MessageBox.Show("Unknown target interface. Cannot proceed.");
+                return;
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
 
-                    // Delete the event record
+                    // Delete the event record based on the chosen query
                     using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
                     {
                         deleteCmd.Parameters.AddWithValue("@eventName", eventName);
-                        deleteCmd.Parameters.AddWithValue("@organizerName", organizer);
+
+                        // Only add the organizer name if it is organizer logic
+                        if (targetInterface == "CreatedEvent")
+                        {
+                            deleteCmd.Parameters.AddWithValue("@organizerName", currentUser);
+                        }
 
                         int deleteResult = deleteCmd.ExecuteNonQuery();
 
                         if (deleteResult > 0)
                         {
-                            // Drop the relating table
+                            // Drop the related table
                             using (MySqlCommand dropCmd = new MySqlCommand(dropTableQuery, connection))
                             {
                                 dropCmd.ExecuteNonQuery();
                             }
-                            MessageBox.Show("Event and associated table deleted successfully!");
-                            CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
-                            createdEvent_Interface.Show();
-                            deleteEventForm.Hide();
+                            MessageBox.Show("Event deleted successfully!");
+
+                            // Show the target interface based on the specified parameter
+                            Form targetForm = null;
+                            if (targetInterface == "CreatedEvent")
+                            {
+                                CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface();
+                                targetForm = createdEvent_Interface;
+                            }
+                            else if (targetInterface == "admin")
+                            {
+                                Admin_interface admin_Interface = new Admin_interface();
+                                targetForm = admin_Interface;
+                            }
+
+                            // Show the target interface if it is defined
+                            if (targetForm != null)
+                            {
+                                targetForm.Show();
+                                deleteEventForm.Hide();
+                            }
                         }
                         else
                         {
@@ -226,6 +266,149 @@ namespace Evennt_management.Classes.Controller_Classes
                 }
             }
         }
+
+        // Registering particpant into a event
+        public static void RegisterPerson(string table, string name, int age, int price)
+        {
+
+            name = name.ToLower();
+            string Participant = UserSession.CurrentUser; // Get the stored participants's name
+            if (Participant != name)
+            {
+                MessageBox.Show("Participant is not registered. Please check whether your using the regitsered name.");
+                return;
+            }
+
+
+
+            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+            string checkIfRegisteredQuery = $"SELECT COUNT(*) FROM `{table}` WHERE Name = @name";
+            string query = $"INSERT INTO `{table}` (Name, Age, Price) VALUES (@name, @age, @price)";
+
+            // Get limit for the event
+            string totalRegistrationsQuery = $"SELECT COUNT(*) FROM `{table}`";
+            string eventQuantityQuery = "SELECT Quantity FROM createevent WHERE LOWER(Name) = @eventName";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlCommand checkCmd = new MySqlCommand(checkIfRegisteredQuery, connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("@name", name);
+                        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Participant is already registered for this event.");
+                            return;
+                        }
+                    }
+                    // Step 2: Get the total number of registrations for the event
+                    int totalRegistrations = 0;
+                    using (MySqlCommand totalRegistrationsCmd = new MySqlCommand(totalRegistrationsQuery, connection))
+                    {
+                        totalRegistrations = Convert.ToInt32(totalRegistrationsCmd.ExecuteScalar());
+                    }
+                    // Step 3: Get the event's quantity limit
+                    int eventQuantity = 0;
+                    using (MySqlCommand eventQuantityCmd = new MySqlCommand(eventQuantityQuery, connection))
+                    {
+                        eventQuantityCmd.Parameters.AddWithValue("@eventName", table.ToLower()); // Event name is the table name
+                        eventQuantity = Convert.ToInt32(eventQuantityCmd.ExecuteScalar());
+                    }
+
+                    // Step 4: Check if the total registrations exceed the event's limit
+                    if (totalRegistrations >= eventQuantity)
+                    {
+                        MessageBox.Show("Event is fully booked. No more registrations are allowed.");
+                        return;
+                    }
+
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@name", name);
+                        cmd.Parameters.AddWithValue("@age", age);
+                        cmd.Parameters.AddWithValue("@price", price);
+
+
+
+                        // Execute the command
+                        int result = cmd.ExecuteNonQuery();
+
+                        if (result == 1)
+                        {
+                            MessageBox.Show("Regitsered for the event successfuly!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Registration unsuccessful.");
+
+                        }
+
+
+                    }
+                    connection.Close();
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+        }
+
+
+        // participant can leave an event
+        public static void LeaveEvent(string Tablename, Form leave)
+        {
+
+            string Participant = UserSession.CurrentUser; // Get the stored Participants's name
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
+
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete he user from the event
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@Name", Participant);
+
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            MessageBox.Show("You have left from the Event Successfully");
+                            Joined_events joined_Events = new Joined_events();
+                            joined_Events.Show();
+                            leave.Hide();
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user found to delete.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
 
 
 

@@ -17,6 +17,7 @@ namespace Evennt_management
         private string name;
         private string currentName;
         private string organizer;
+        private string targetedInterface;
 
         public string Date { get { return date; } set { date = value; } }
         public string Time { get { return time; } set { time = value; } }
@@ -27,6 +28,8 @@ namespace Evennt_management
         public string Organizer { get { return organizer; } set { organizer = value; } }
 
         public string CurrentName { get { return currentName; } set { currentName = value; } }
+
+        public string Targetform { get { return targetedInterface; } set { targetedInterface = value; } }
 
         public Event(string date, string time, string place, int price, int quantity, string name,string organizer)
         {
@@ -66,9 +69,9 @@ namespace Evennt_management
         {
             EventController.UpdateEvent(e1,updateEvent);
         }
-        public void DeleteEvent(string Name,Form deleteEvent)
+        public void DeleteEvent(string Name,Form deleteEvent,string Targetform)
         {
-            EventController.DeleteEvent(Name, deleteEvent);
+            EventController.DeleteEvent(Name,deleteEvent,Targetform);
         }
 
     }

@@ -39,9 +39,15 @@ namespace Evennt_management
             e1.UpdateEvent(e1,updateEvent);
         }
 
+        public void RemoveEvent(string username, Form deleteform, string targetfrom)
+        {
+            Event e1 = new Event();
+            e1.DeleteEvent(username, deleteform, targetfrom);
+        }
 
 
-     
+
+
 
 
 

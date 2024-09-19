@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +10,37 @@ namespace Evennt_management
 {
     internal interface Validations
     {
-        //public void login(string username, string password, Form f1);
-        //public void Logout();
-        //public void Register();
-        public void Veiw_details();
-        public void Change_details();
+        // View the participants inside a event
+        public void VeiwBookingsData(string Table, DataGridView datagrid)
+        {
+            Table = Table.ToLower();
+
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string query = $"SELECT * FROM {Table}";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand com = new MySqlCommand(query, connection))
+                    {
+                        MySqlDataAdapter da = new MySqlDataAdapter(com);
+                        DataTable table = new DataTable();
+                        da.Fill(table);
+                        datagrid.DataSource = table;
+
+                    }
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+        }
 
     }
 }

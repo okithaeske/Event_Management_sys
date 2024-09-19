@@ -27,4 +27,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms\Admin_interface\" />
+    <Folder Include="Forms\Participant_interface\" />
+    <Folder Include="Forms\Organizer_Interface\" />
+  </ItemGroup>
+
 </Project>

@@ -769,7 +769,7 @@ namespace Evennt_management
         }
 
 
-        // Select role if organizer call specific fucntion else delete user
+        // Delete user if user is organizer call separate fucntion
         public static void DeleteUser(string username)
         {
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
@@ -977,6 +977,100 @@ namespace Evennt_management
             }
         }
 
+
+        
+        // Delete Event
+        public static void Deleteevent(string eventName, Form deleteEventForm, string targetInterface)
+        {
+            string currentUser = UserSession.CurrentUser; // Get the stored current user's name
+            if (string.IsNullOrEmpty(currentUser))
+            {
+                MessageBox.Show("User not found. Please login again.");
+                return;
+            }
+
+            
+            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+            string deleteEventQuery;
+            string dropTableQuery = $"DROP TABLE IF EXISTS `{eventName}`";
+
+            // Check if the target interface is for CreatedEvent or Admin
+            if (targetInterface == "CreatedEvent")
+            {
+                // Organizer logic: Can only delete their own event
+                deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName AND Organizer_Name = @organizerName";
+            }
+            else if (targetInterface == "admin")
+            {
+                // Admin logic: Can delete any event without restriction
+                deleteEventQuery = "DELETE FROM createevent WHERE Name = @eventName";
+            }
+            else
+            {
+                MessageBox.Show("Unknown target interface. Cannot proceed.");
+                return;
+            }
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Delete the event record based on the chosen query
+                    using (MySqlCommand deleteCmd = new MySqlCommand(deleteEventQuery, connection))
+                    {
+                        deleteCmd.Parameters.AddWithValue("@eventName", eventName);
+
+                        // Only add the organizer name if it is organizer logic
+                        if (targetInterface == "CreatedEvent")
+                        {
+                            deleteCmd.Parameters.AddWithValue("@organizerName", currentUser);
+                        }
+
+                        int deleteResult = deleteCmd.ExecuteNonQuery();
+
+                        if (deleteResult > 0)
+                        {
+                            // Drop the related table
+                            using (MySqlCommand dropCmd = new MySqlCommand(dropTableQuery, connection))
+                            {
+                                dropCmd.ExecuteNonQuery();
+                            }
+                            MessageBox.Show("Event and associated table deleted successfully!");
+
+                            // Show the target interface based on the specified parameter
+                            Form targetForm = null;
+                            if (targetInterface == "CreatedEvent")
+                            {
+                                CreatedEvent_interface createdEvent_Interface = new CreatedEvent_interface ();
+                                targetForm = createdEvent_Interface;
+                            }
+                            else if (targetInterface == "Admin")
+                            {
+                                Admin_interface admin_Interface = new Admin_interface ();
+                                targetForm = admin_Interface;
+                            }
+
+                            // Show the target interface if it is defined
+                            if (targetForm != null)
+                            {
+                                targetForm.Show();
+                                deleteEventForm.Hide();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No event found to delete.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
 
 
 

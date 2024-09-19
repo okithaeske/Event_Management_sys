@@ -29,7 +29,9 @@ namespace Evennt_management
             string ename = textBox1.Text;
             // Remove whitespaces
             string EventName = ename.Replace(" ", "");
-            Database.AdminDeleteEvent(EventName);
+         
+            Admin a1 = new Admin();
+            a1.RemoveEvent(EventName,this, "admin");
 
         }
 

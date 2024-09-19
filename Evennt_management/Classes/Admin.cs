@@ -18,6 +18,7 @@ namespace Evennt_management
         {
             
         }
+        public Admin() {}
 
         public override void Register(Person person, Form f1)
         {
@@ -27,10 +28,16 @@ namespace Evennt_management
         {
             PersonController.getUser(username, password, f1);
         }
-        public void Logout() { }
-        public void Register() { }
-        public void Veiw_details() { }
-        public void Change_details() { }
+        public void RemoveEvent(string username,Form deleteform ,string targetfrom) 
+        {
+            Event e1 = new Event();
+            e1.DeleteEvent(username, deleteform, targetfrom);
+        }
+
+        public void Kickuser() { }
+
+
+      
 
     }
 }
