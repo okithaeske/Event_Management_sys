@@ -46,12 +46,27 @@ namespace Evennt_management
             ViewBookings_interface veiwBookings_Interface = new ViewBookings_interface();
             veiwBookings_Interface.Show();
             this.Hide();
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void BookingsSub_interface_Load(object sender, EventArgs e)
+        {
+            Database.DisplayEventsByOrganizer(dataGridView1);
         }
     }
 }

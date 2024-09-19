@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,12 +37,30 @@ namespace Evennt_management
             string name = textBox1.Text;
             // Remove whitespaces
             string eventname = name.Replace(" ", "");
-            Database.DeleteEvent(eventname,this);
+            Event e1 = new Event();
+            e1.DeleteEvent(eventname, this);
+
+            //EventController.DeleteEvent(eventname,this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DeleteEvent_interface_Load(object sender, EventArgs e)
+        {
+            Database.DisplayEventsByOrganizer(dataGridView1);
         }
     }
 }

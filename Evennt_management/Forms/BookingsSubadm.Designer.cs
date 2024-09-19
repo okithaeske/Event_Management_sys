@@ -35,7 +35,9 @@
             label2 = new Label();
             linkLabel1 = new LinkLabel();
             textBox1 = new TextBox();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -45,14 +47,14 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(textBox1);
-            panel1.Location = new Point(68, 55);
+            panel1.Location = new Point(28, 53);
             panel1.Name = "panel1";
-            panel1.Size = new Size(724, 371);
+            panel1.Size = new Size(320, 371);
             panel1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(307, 295);
+            button1.Location = new Point(100, 270);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 5;
@@ -64,17 +66,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(253, 20);
+            label1.Location = new Point(28, 17);
             label1.Name = "label1";
             label1.Size = new Size(255, 46);
             label1.TabIndex = 1;
-            label1.Text = "Veiw Bookings";
+            label1.Text = "View Bookings";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(199, 185);
+            label2.Location = new Point(100, 129);
             label2.Name = "label2";
             label2.Size = new Size(106, 23);
             label2.TabIndex = 2;
@@ -93,11 +96,20 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(337, 182);
+            textBox1.Location = new Point(43, 201);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(210, 27);
             textBox1.TabIndex = 4;
             textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(343, 53);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(511, 371);
+            dataGridView1.TabIndex = 6;
             // 
             // BookingsSubadm
             // 
@@ -106,11 +118,14 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(880, 497);
+            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "BookingsSubadm";
             Text = "BookingsSubadm";
+            Load += BookingsSubadm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -122,5 +137,6 @@
         private Label label2;
         private LinkLabel linkLabel1;
         private Button button1;
+        private DataGridView dataGridView1;
     }
 }

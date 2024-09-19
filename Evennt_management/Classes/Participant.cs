@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
+using Evennt_management.Classes.Controller_Classes;
 
 namespace Evennt_management
 {
@@ -28,11 +29,11 @@ namespace Evennt_management
 
         public override void Register(Person person, Form f1)
         {
-            Database.register(person, f1);
+            PersonController.register(person, f1);
         }
         public override void login(string username, string password, Form f1)
         {
-            Database.getUser(username, password, f1);
+            PersonController.getUser(username, password, f1);
 
         }
 
@@ -40,6 +41,7 @@ namespace Evennt_management
         {
             Database.RegisterPerson(eventName, pname, age, price);
         }
+
         public void Logout() { }
         public void Register() { }
         public void Veiw_details() { }

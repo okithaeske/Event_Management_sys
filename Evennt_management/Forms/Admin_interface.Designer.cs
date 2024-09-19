@@ -70,7 +70,7 @@
             button4.Name = "button4";
             button4.Size = new Size(144, 72);
             button4.TabIndex = 3;
-            button4.Text = "Veiw Bookings";
+            button4.Text = "View Bookings";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -82,7 +82,7 @@
             button3.Name = "button3";
             button3.Size = new Size(144, 72);
             button3.TabIndex = 3;
-            button3.Text = "Veiw User Details";
+            button3.Text = "View User Details";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,11 @@ namespace Evennt_management
 
         public override void Register(Person person, Form f1)
         {
-            Database.register(person,f1);
+            PersonController.register(person,f1);
         }
         public override void login(string username, string password, Form f1)
         {
-            Database.getUser(username, password, f1);
+            PersonController.getUser(username, password, f1);
         }
         public void Logout() { }
         public void Register() { }

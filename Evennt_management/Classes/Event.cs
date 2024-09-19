@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,17 +53,23 @@ namespace Evennt_management
 
         }
 
+        public Event() { }
+
+
 
         public void DisplayEvent() { }
         public void CreateEvent(Event e1, Form f1)     
         {
-            Database.CreateEvent(e1,f1);
+            EventController.CreateEvent(e1,f1);
         }
         public void UpdateEvent(Event e1,Form updateEvent) 
         {
-            Database.UpdateEvent(e1,updateEvent);
+            EventController.UpdateEvent(e1,updateEvent);
         }
-        public void DeleteEvent() { }
+        public void DeleteEvent(string Name,Form deleteEvent)
+        {
+            EventController.DeleteEvent(Name, deleteEvent);
+        }
 
     }
 }

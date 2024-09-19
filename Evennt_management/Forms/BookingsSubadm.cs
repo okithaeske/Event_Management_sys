@@ -42,5 +42,15 @@ namespace Evennt_management.Forms
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BookingsSubadm_Load(object sender, EventArgs e)
+        {
+            Database.VeiwData(dataGridView1);
+        }
     }
 }

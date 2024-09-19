@@ -34,13 +34,19 @@ namespace Evennt_management.Forms
             string tableName = Organizer.TableName;
             string Name = textBox1.Text;
 
-            Database.kickUser(Name,tableName,this); 
+            Database.kickUser(Name, tableName, this);
 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void KickUser_Load(object sender, EventArgs e)
+        {
+            string tableName = Organizer.TableName;
+            Database.VeiwBookingsData(tableName, dataGridView1);
         }
     }
 }

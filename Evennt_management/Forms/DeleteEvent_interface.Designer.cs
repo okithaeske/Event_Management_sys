@@ -35,7 +35,9 @@
             linkLabel1 = new LinkLabel();
             label2 = new Label();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -47,12 +49,12 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(55, 41);
             panel1.Name = "panel1";
-            panel1.Size = new Size(708, 358);
+            panel1.Size = new Size(280, 358);
             panel1.TabIndex = 0;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(289, 155);
+            textBox1.Location = new Point(39, 152);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(206, 27);
             textBox1.TabIndex = 4;
@@ -60,7 +62,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(289, 255);
+            button1.Location = new Point(82, 236);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 3;
@@ -83,21 +85,32 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(177, 159);
+            label2.Location = new Point(82, 113);
             label2.Name = "label2";
             label2.Size = new Size(106, 23);
             label2.TabIndex = 1;
             label2.Text = "Event Name";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(243, 23);
+            label1.Location = new Point(25, 17);
             label1.Name = "label1";
             label1.Size = new Size(220, 46);
             label1.TabIndex = 0;
             label1.Text = "Delete Event";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(334, 41);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(468, 358);
+            dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // DeleteEvent_interface
             // 
@@ -106,11 +119,14 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(823, 470);
+            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "DeleteEvent_interface";
             Text = "DeleteEvent_interface";
+            Load += DeleteEvent_interface_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -122,5 +138,6 @@
         private LinkLabel linkLabel1;
         private Label label2;
         private Label label1;
+        private DataGridView dataGridView1;
     }
 }

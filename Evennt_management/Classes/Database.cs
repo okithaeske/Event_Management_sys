@@ -16,13 +16,14 @@ namespace Evennt_management
 {
     internal class Database
     {
+
+        public static string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+
         // creating a class to store the current user
         public static class UserSession
         {
             public static string CurrentUser { get; set; }
         }
-
-
         // Insert user information to the databse
         public static void register(Person person, Form f1)
         {

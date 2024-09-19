@@ -37,5 +37,15 @@ namespace Evennt_management
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void RemoveEventadm_Load(object sender, EventArgs e)
+        {
+            Database.VeiwData(dataGridView1);
+        }
     }
 }
