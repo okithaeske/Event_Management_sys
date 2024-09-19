@@ -1,6 +1,6 @@
 ﻿namespace Evennt_management.Forms
 {
-    partial class KickUser
+    partial class RemoveUser
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KickUser));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveUser));
             panel1 = new Panel();
             button1 = new Button();
             textBox1 = new TextBox();

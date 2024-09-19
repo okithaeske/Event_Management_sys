@@ -73,6 +73,8 @@ namespace Evennt_management
         {
             EventController.DeleteEvent(Name,deleteEvent,Targetform);
         }
+        
+
 
     }
 }

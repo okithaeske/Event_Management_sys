@@ -60,13 +60,13 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(39, 37);
             panel1.Name = "panel1";
-            panel1.Size = new Size(911, 462);
+            panel1.Size = new Size(452, 462);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
             // button1
             // 
-            button1.Location = new Point(414, 350);
+            button1.Location = new Point(171, 378);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 10;
@@ -76,7 +76,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(615, 256);
+            textBox4.Location = new Point(201, 317);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(228, 27);
             textBox4.TabIndex = 9;
@@ -85,24 +85,24 @@
             // textBox3
             // 
             textBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            textBox3.Location = new Point(161, 256);
+            textBox3.Location = new Point(201, 254);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(246, 30);
+            textBox3.Size = new Size(228, 30);
             textBox3.TabIndex = 8;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            textBox2.Location = new Point(161, 139);
+            textBox2.Location = new Point(201, 137);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(246, 30);
+            textBox2.Size = new Size(228, 30);
             textBox2.TabIndex = 7;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(615, 139);
+            textBox1.Location = new Point(201, 201);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(228, 27);
             textBox1.TabIndex = 6;
@@ -112,7 +112,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            label5.Location = new Point(49, 263);
+            label5.Location = new Point(44, 261);
             label5.Name = "label5";
             label5.Size = new Size(41, 23);
             label5.TabIndex = 5;
@@ -122,7 +122,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            label4.Location = new Point(458, 260);
+            label4.Location = new Point(44, 321);
             label4.Name = "label4";
             label4.Size = new Size(50, 23);
             label4.TabIndex = 4;
@@ -132,7 +132,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            label3.Location = new Point(458, 139);
+            label3.Location = new Point(44, 201);
             label3.Name = "label3";
             label3.Size = new Size(151, 23);
             label3.TabIndex = 3;
@@ -164,7 +164,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(342, 21);
+            label1.Location = new Point(100, 23);
             label1.Name = "label1";
             label1.Size = new Size(247, 46);
             label1.TabIndex = 0;

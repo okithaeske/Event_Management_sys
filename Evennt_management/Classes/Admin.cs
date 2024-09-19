@@ -18,6 +18,10 @@ namespace Evennt_management
         {
             
         }
+        public Admin(string username) : base(username)
+        {
+
+        }
         public Admin() {}
 
         public override void Register(Person person, Form f1)
@@ -34,7 +38,10 @@ namespace Evennt_management
             e1.DeleteEvent(username, deleteform, targetfrom);
         }
 
-        public void Kickuser() { }
+        public void RemoveParticipant(string username,string TableName, Form kick) 
+        {
+            AdminController.RemoveParticipant(username,TableName,kick);
+        }
 
 
       

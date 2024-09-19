@@ -26,7 +26,9 @@ namespace Evennt_management.Forms
 
         private void Joined_events_Load(object sender, EventArgs e)
         {
-            Database.GetRegisteredTables(dataGridView1);
+            Participant participant = new Participant();
+            participant.ViewJoinedEvents(dataGridView1);
+       
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

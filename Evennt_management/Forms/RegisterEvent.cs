@@ -65,7 +65,7 @@ namespace Evennt_management
             int price = Convert.ToInt32(textBox4.Text);
 
             Participant p1 = new Participant(); 
-            p1.RegisterToEvent(eventName, pname, age, price);
+            p1.JoinEvent(eventName, pname, age, price);
 
         }
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Evennt_management.Forms
 {
-    public partial class KickUser : Form
+    public partial class RemoveUser : Form
     {
-        public KickUser()
+        public RemoveUser()
         {
             InitializeComponent();
         }
@@ -34,7 +34,8 @@ namespace Evennt_management.Forms
             string tableName = Organizer.TableName;
             string Name = textBox1.Text;
 
-            Database.kickUser(Name, tableName, this);
+            Admin ad1 = new Admin();
+            ad1.RemoveParticipant(Name, tableName, this);
 
         }
 

@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Xml.Linq;
-using Evennt_management.Classes.Controller_Classes;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System.Windows.Forms;
 
 namespace Evennt_management
 {
-    internal class Participant:Person,Validations
+    internal class Participant : Person, Validations
     {
 
         public Participant(string name, int age, string role, string username, string password) : base(name, age, role, username, password)
@@ -19,10 +11,10 @@ namespace Evennt_management
         }
         public Participant()
         {
-            
+
         }
 
-        public Participant(string username, string password):base(username,password) { }
+        public Participant(string username, string password) : base(username, password) { }
 
         public void JoinEvent() { }
 
@@ -37,15 +29,26 @@ namespace Evennt_management
 
         }
 
-        public void RegisterToEvent(string eventName,string pname, int age, int price) 
+        public void JoinEvent(string eventName, string pname, int age, int price)
         {
-            Database.RegisterPerson(eventName, pname, age, price);
+            EventController.RegisterPerson(eventName, pname, age, price);
         }
 
-        public void Logout() { }
-        public void Register() { }
-        public void Veiw_details() { }
-        public void Change_details() { }
+        public void LeaveEvent(string eventName, Form leave)
+        {
+            EventController.LeaveEvent(eventName, leave);
+        }
+
+        public void ViewJoinedEvents(DataGridView dataGridView)
+        {
+            Database.GetRegisteredTables(dataGridView);
+        }
+
+
+
+
+
+
 
 
 

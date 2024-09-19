@@ -29,7 +29,8 @@ namespace Evennt_management.Forms
             string tName = textBox1.Text;
             // Remove whitespaces
             string tableName= tName.Replace(" ", "");
-            Database.LeaveEvent(tableName, this);
+            Participant p1 = new Participant();
+            p1.LeaveEvent(tableName, this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

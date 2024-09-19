@@ -38,10 +38,19 @@
             this.role = role;
         }
 
+        public Person(string username)
+        {
+   
+            this.username = username;
+           
+        }
         public abstract void Register(Person person, Form f1);
 
 
         public abstract void login(string username, string password, Form f1);
+
+
+
 
         public static void DisplayPersonDetails()
         {

@@ -38,7 +38,7 @@ namespace Evennt_management.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            KickUser kickUser = new KickUser();
+            RemoveUser kickUser = new RemoveUser();
             kickUser.Show();
             this.Hide();
         }
