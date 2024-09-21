@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Evennt_management.Forms;
+using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +19,7 @@ namespace Evennt_management
 
             string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string query = $"SELECT * FROM {Table}";
+
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 try
@@ -35,7 +38,7 @@ namespace Evennt_management
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show($"The event '{Table}' does not exist. Please check the event name.");
                 }
 
             }

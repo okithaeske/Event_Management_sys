@@ -15,28 +15,27 @@ namespace Evennt_management.Classes.Controller_Classes
         // Create event and insert data into create event table
         public static void CreateEvent(Event e1, Form create)
         {
-            string checkOrganizerQuery = "SELECT COUNT(*) FROM user_info WHERE Username = @organizer";
+            string organizer = UserSession.CurrentUser; // Get the stored organizer's name
+            if (string.IsNullOrEmpty(organizer))
+            {
+                MessageBox.Show("Organizer not found. Please login again.");
+                return;
+            }
+
             string query = "INSERT INTO createevent (Name,Date,Time,Place,Price,Quantity,Organizer_Name) VALUES (@event,@date,@time,@place,@price,@quantity,@organizer)";
             using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
-                    connection.Open();
                     //validation to see whether organizer has put his regitsered name
-
-                    using (MySqlCommand checkOrganizerCmd = new MySqlCommand(checkOrganizerQuery, connection))
+                    if (e1.Organizer != organizer)
                     {
-                        checkOrganizerCmd.Parameters.AddWithValue("@organizer", e1.Organizer);
-                        int organizerExists = Convert.ToInt32(checkOrganizerCmd.ExecuteScalar());
-
-                        if (organizerExists == 0)
-                        {
-                            MessageBox.Show("Organizer is not registered. Please check whether your using the regitsered name.");
-                            return;
-                        }
+                        MessageBox.Show("The organizer name does not match the logged-in user. Please use the correct organizer name.");
+                        return;
                     }
 
                     // creating event
+                    connection.Open();
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -184,8 +183,6 @@ namespace Evennt_management.Classes.Controller_Classes
                 return;
             }
 
-
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string deleteEventQuery;
             string dropTableQuery = $"DROP TABLE IF EXISTS `{eventName}`";
 
@@ -217,7 +214,7 @@ namespace Evennt_management.Classes.Controller_Classes
                     {
                         deleteCmd.Parameters.AddWithValue("@eventName", eventName);
 
-                        // Only add the organizer name if it is organizer logic
+                        // Only add the organizer name if it is organizer 
                         if (targetInterface == "CreatedEvent")
                         {
                             deleteCmd.Parameters.AddWithValue("@organizerName", currentUser);
@@ -248,11 +245,11 @@ namespace Evennt_management.Classes.Controller_Classes
                             }
 
                             // Show the target interface if it is defined
-                            if (targetForm != null)
-                            {
-                                targetForm.Show();
-                                deleteEventForm.Hide();
-                            }
+                                if (targetForm != null)
+                                {
+                                    targetForm.Show();
+                                    deleteEventForm.Hide();
+                                }
                         }
                         else
                         {

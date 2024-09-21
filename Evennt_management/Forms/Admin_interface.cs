@@ -72,8 +72,8 @@ namespace Evennt_management
 
         private void button4_Click(object sender, EventArgs e)
         {
-            BookingsSubadm bookingsSubadm = new BookingsSubadm();
-            bookingsSubadm.Show();
+            ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
+            viewBookingsadm_Interface.Show();   
             this.Hide();
         }
     }

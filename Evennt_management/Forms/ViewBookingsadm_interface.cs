@@ -31,10 +31,8 @@ namespace Evennt_management.Forms
 
         private void ViewBookingsadm_interface_Load(object sender, EventArgs e)
         {
-            string tableName = Organizer.TableName;
-            Admin o1 = new Admin();
-            Validations OrgAdmInterface = new Admin();
-            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+            Database.DisplayEventsByOrganizer(dataGridView2);
+
 
         }
 
@@ -43,6 +41,44 @@ namespace Evennt_management.Forms
             RemoveUser kickUser = new RemoveUser();
             kickUser.Show();
             this.Hide();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit the method without further processing
+            }
+            string tName = textBox1.Text;
+            // Remove whitespaces
+            string tableName = tName.Replace(" ", "");
+
+            Admin o1 = new Admin();
+            Validations OrgAdmInterface = new Admin();
+            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+
+        }
+
+        private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

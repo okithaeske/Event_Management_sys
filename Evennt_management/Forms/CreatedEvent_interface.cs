@@ -55,9 +55,10 @@ namespace Evennt_management
 
         private void button3_Click(object sender, EventArgs e)
         {
-            BookingsSub_interface bookingsSub_Interface = new BookingsSub_interface();
-            bookingsSub_Interface.Show();
+            ViewBookings_interface viewBookings_Interface = new ViewBookings_interface();   
+            viewBookings_Interface.Show();
             this.Hide();
+    
         }
     }
 }
