@@ -47,7 +47,7 @@ namespace Evennt_management
 
         private void RemoveEventadm_Load(object sender, EventArgs e)
         {
-            Database.VeiwData(dataGridView1);
+            Person.VeiwEvents(dataGridView1);
         }
     }
 }

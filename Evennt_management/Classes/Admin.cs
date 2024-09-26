@@ -43,6 +43,15 @@ namespace Evennt_management
             AdminController.RemoveParticipant(username,TableName,kick);
         }
 
+        public void KickUser(string username)
+        {
+            AdminController.KickUser(username);
+        }
+
+        public static void ViewUserDetail(DataGridView dataGridView)
+        {
+            AdminController.VeiwUserInfo(dataGridView);
+        }
 
       
 

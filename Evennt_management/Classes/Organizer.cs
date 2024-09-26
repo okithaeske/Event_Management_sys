@@ -45,15 +45,16 @@ namespace Evennt_management
             e1.DeleteEvent(username, deleteform, targetfrom);
         }
 
+        public static void View_details(DataGridView dataGrid) 
+        {
+            OrganizerContoller.DisplayEventsByOrganizer(dataGrid);
+        }
 
 
 
 
 
 
-        public void Logout() { }
-        public void Register() { }
-        public void Veiw_details() { }
         public void Change_details() { }
     }
 }

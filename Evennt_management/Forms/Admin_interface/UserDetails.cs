@@ -19,7 +19,7 @@ namespace Evennt_management
 
         private void UserDetails_Load(object sender, EventArgs e)
         {
-            Database.VeiwUserInfo(dataGridView1);
+           Admin.ViewUserDetail(dataGridView1);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

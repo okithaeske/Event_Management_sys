@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,7 +48,7 @@ namespace Evennt_management.Forms
         private void KickUser_Load(object sender, EventArgs e)
         {
             string tableName = Organizer.TableName;
-            Database.VeiwBookingsData(tableName, dataGridView1);
+            AdminController.VeiwBookingsData(tableName, dataGridView1);
         }
     }
 }

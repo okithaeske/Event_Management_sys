@@ -25,7 +25,7 @@ namespace Evennt_management
         private void VeiwBookings_interface_Load(object sender, EventArgs e)
         {
 
-            Database.DisplayEventsByOrganizer(dataGridView2);
+            Organizer.View_details(dataGridView2);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

@@ -81,7 +81,7 @@ namespace Evennt_management
 
         private void RegisterEvent_Load(object sender, EventArgs e)
         {
-            Database.VeiwData(dataGridView1);
+            Person.VeiwEvents(dataGridView1);
         }
     }
 }

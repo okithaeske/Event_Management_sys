@@ -15,9 +15,9 @@ namespace Evennt_management.Classes.Controller_Classes
         // Veiw user details
         public static void VeiwUserInfo(DataGridView datagrid)
         {
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+          
             string query = "SELECT ID, Name, Age,Role, Username FROM user_info WHERE Role != 'admin'";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -46,12 +46,10 @@ namespace Evennt_management.Classes.Controller_Classes
         public static void RemoveParticipant(string usersName, string Tablename, Form kick)
         {
 
-
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
 
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -91,9 +89,8 @@ namespace Evennt_management.Classes.Controller_Classes
         // Delete user if user is organizer call separate fucntion
         public static void KickUser(string username)
         {
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -148,9 +145,9 @@ namespace Evennt_management.Classes.Controller_Classes
         // delete all the events created by specific organizer
         private static void DeleteEverythingofOrganizer(string username)
         {
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+        
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -199,6 +196,37 @@ namespace Evennt_management.Classes.Controller_Classes
 
             }
 
+
+        }
+
+        // View the participants inside a event
+        public static void VeiwBookingsData(string Table, DataGridView datagrid)
+        {
+            Table = Table.ToLower();
+
+            string query = $"SELECT * FROM {Table}";
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand com = new MySqlCommand(query, connection))
+                    {
+                        MySqlDataAdapter da = new MySqlDataAdapter(com);
+                        DataTable table = new DataTable();
+                        da.Fill(table);
+                        datagrid.DataSource = table;
+
+                    }
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
 
         }
 

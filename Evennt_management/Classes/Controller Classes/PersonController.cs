@@ -148,13 +148,12 @@ namespace Evennt_management.Classes.Controller_Classes
         }
 
 
-
         // Veiw the created events
         public static void VeiwData(DataGridView datagrid)
         {
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
+          
             string query = "SELECT * FROM createevent";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {

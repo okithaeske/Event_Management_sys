@@ -33,7 +33,9 @@ namespace Evennt_management
             }
             string username = textBox1.Text;
 
-            Database.DeleteUser(username);
+            Admin admin = new Admin();
+            admin.KickUser(username);
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

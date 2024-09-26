@@ -1,4 +1,6 @@
-﻿namespace Evennt_management
+﻿using Evennt_management.Classes.Controller_Classes;
+
+namespace Evennt_management
 {
     internal abstract class Person
     {
@@ -22,7 +24,7 @@
         public string Username { get { return username; } set { username = value; } }
         public string Password { get { return password; } set { password = value; } }
 
-
+        public Person(){  }
         protected Person(string username, string password)
         {
             this.username = username;
@@ -62,9 +64,9 @@
 
         }
 
-        public static void VeiwEvents()
+        public static void VeiwEvents(DataGridView dataGrid)
         {
-
+            PersonController.VeiwData(dataGrid);
         }
 
 

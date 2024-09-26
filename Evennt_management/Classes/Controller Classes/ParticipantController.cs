@@ -17,10 +17,9 @@ namespace Evennt_management.Classes.Controller_Classes
         public static void GetRegisteredTables(DataGridView dataGridView)
         {
             string Participant = UserSession.CurrentUser; // Get the stored Participants's name
-            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
             string query = "SHOW TABLES";
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -77,6 +76,8 @@ namespace Evennt_management.Classes.Controller_Classes
                 }
             }
         }
+
+
 
 
 

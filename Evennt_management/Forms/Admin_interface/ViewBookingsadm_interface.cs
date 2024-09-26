@@ -31,7 +31,7 @@ namespace Evennt_management.Forms
 
         private void ViewBookingsadm_interface_Load(object sender, EventArgs e)
         {
-            Database.DisplayEventsByOrganizer(dataGridView2);
+            Organizer.View_details(dataGridView2);
 
 
         }

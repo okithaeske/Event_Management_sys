@@ -60,7 +60,7 @@ namespace Evennt_management
 
         private void DeleteEvent_interface_Load(object sender, EventArgs e)
         {
-            Database.DisplayEventsByOrganizer(dataGridView1);
+            Organizer.VeiwEvents(dataGridView1);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Evennt_management
 
         public void ViewJoinedEvents(DataGridView dataGridView)
         {
-            Database.GetRegisteredTables(dataGridView);
+            ParticipantController.GetRegisteredTables(dataGridView);
         }
 
 

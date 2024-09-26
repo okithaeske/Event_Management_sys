@@ -20,7 +20,7 @@ namespace Evennt_management
 
         private void Admin_interface_Load(object sender, EventArgs e)
         {
-            Database.VeiwData(dataGridView1);
+            Person.VeiwEvents(dataGridView1);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

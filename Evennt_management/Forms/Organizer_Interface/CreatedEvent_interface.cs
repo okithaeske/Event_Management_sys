@@ -24,7 +24,7 @@ namespace Evennt_management
 
         private void CreatedEvent_interface_Load(object sender, EventArgs e)
         {
-            Database.DisplayEventsByOrganizer(dataGridView1);
+            Organizer.View_details(dataGridView1);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

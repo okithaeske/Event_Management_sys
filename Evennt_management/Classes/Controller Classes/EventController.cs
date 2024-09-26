@@ -203,7 +203,7 @@ namespace Evennt_management.Classes.Controller_Classes
                 return;
             }
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -278,7 +278,7 @@ namespace Evennt_management.Classes.Controller_Classes
 
 
 
-            string connectionString = "Server=localhost;Database= event_management;User ID=root;Password=;";
+         
             string checkIfRegisteredQuery = $"SELECT COUNT(*) FROM `{table}` WHERE Name = @name";
             string query = $"INSERT INTO `{table}` (Name, Age, Price) VALUES (@name, @age, @price)";
 
@@ -287,7 +287,7 @@ namespace Evennt_management.Classes.Controller_Classes
             string eventQuantityQuery = "SELECT Quantity FROM createevent WHERE LOWER(Name) = @eventName";
 
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
@@ -366,11 +366,10 @@ namespace Evennt_management.Classes.Controller_Classes
         {
 
             string Participant = UserSession.CurrentUser; // Get the stored Participants's name
-            string connectionString = "Server=localhost;Database=event_management;User ID=root;Password=;";
             string deleteEventQuery = $"DELETE FROM {Tablename} WHERE Name = @Name";
 
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
                 try
                 {
