@@ -151,7 +151,7 @@ namespace Evennt_management.Classes.Controller_Classes
         // Veiw the created events
         public static void VeiwData(DataGridView datagrid)
         {
-          
+         
             string query = "SELECT * FROM createevent";
             using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {

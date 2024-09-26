@@ -37,6 +37,7 @@
             label4 = new Label();
             button1 = new Button();
             panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -109,7 +110,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(54, 314);
+            button1.Location = new Point(40, 271);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 7;
@@ -120,6 +121,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(button1);
             panel1.Location = new Point(12, 41);
             panel1.Name = "panel1";
             panel1.Size = new Size(411, 428);
@@ -131,8 +133,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(435, 594);
-            Controls.Add(button1);
+            ClientSize = new Size(435, 503);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(linkLabel1);
@@ -145,6 +146,7 @@
             Name = "Login";
             Text = "Login";
             Load += Form1_Load;
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
