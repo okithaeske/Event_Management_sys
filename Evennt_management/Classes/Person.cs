@@ -24,7 +24,7 @@ namespace Evennt_management
         public string Username { get { return username; } set { username = value; } }
         public string Password { get { return password; } set { password = value; } }
 
-        public Person(){  }
+
         protected Person(string username, string password)
         {
             this.username = username;
