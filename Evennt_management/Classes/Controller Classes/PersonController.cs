@@ -1,10 +1,14 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Evennt_management.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Evennt_management.Database;
 
 namespace Evennt_management.Classes.Controller_Classes
 {
@@ -177,6 +181,115 @@ namespace Evennt_management.Classes.Controller_Classes
             }
 
         }
+
+
+        public static void VeiwPersonalData(DataGridView datagrid)
+        {
+            string user = UserSession.CurrentUser; // Get the stored User`s name
+
+            string query = "SELECT * FROM user_info WHERE Username = @username";
+
+            using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username",user);
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            datagrid.DataSource = dt;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+
+        }
+
+
+        public static void ChangeUserDetails(string name, string age,Form f1)
+        {
+            string user = UserSession.CurrentUser; // Get the stored User`s name
+
+            using (MySqlConnection con = new MySqlConnection(Database.connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    //MessageBox.Show(username);
+
+                    List<string> DetailsList = new List<string>();
+
+                    MySqlCommand Cmd = new MySqlCommand();
+                    Cmd.Connection = con;
+
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        DetailsList.Add("Name = @newName");
+                        Cmd.Parameters.AddWithValue("@newName", name);
+                    }
+                    if (!string.IsNullOrEmpty(age))
+                    {
+                        int Age = Convert.ToInt32(age);
+                        if (Age < 12)
+                        {
+                            MessageBox.Show("Age must be greater than 12.");
+                        }
+                        DetailsList.Add("Age = @newAge");
+                        Cmd.Parameters.AddWithValue("@newage", Age);
+                    }
+
+
+                    if (DetailsList.Count > 0)
+                    {
+                        // Only changing the given getails.
+                        string updateQuery = $"UPDATE user_info SET {string.Join(", ", DetailsList)} WHERE Username = @username";
+                        Cmd.CommandText = updateQuery;
+                        Cmd.Parameters.AddWithValue("@username", user);
+
+                        int rowAffected = Cmd.ExecuteNonQuery();
+                        if (rowAffected > 0)
+                        {
+                            MessageBox.Show("User details Updated Successfully","Info" ,MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            PersonalDetails personalDetails = new PersonalDetails();
+                            personalDetails.Show();
+                            f1.Hide();
+                
+                        }
+                        else
+                        {
+                            MessageBox.Show("Could NOT update user details Successfully", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+
+
+
+
+
+
 
 
     }

@@ -40,6 +40,7 @@
             panel1 = new Panel();
             panel4 = new Panel();
             dataGridView1 = new DataGridView();
+            button5 = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -127,6 +128,7 @@
             // 
             panel3.BackColor = Color.HotPink;
             panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(button5);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(panel1);
             panel3.Location = new Point(219, 0);
@@ -172,6 +174,16 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // button5
+            // 
+            button5.Location = new Point(643, 17);
+            button5.Name = "button5";
+            button5.Size = new Size(127, 91);
+            button5.TabIndex = 3;
+            button5.Text = "View Profile";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // Admin_interface
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -204,5 +216,6 @@
         private Panel panel4;
         private DataGridView dataGridView1;
         private Button button4;
+        private Button button5;
     }
 }

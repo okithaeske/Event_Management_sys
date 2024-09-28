@@ -40,6 +40,7 @@
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -120,6 +121,7 @@
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
             panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(button4);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(217, 0);
             panel2.Name = "panel2";
@@ -148,6 +150,16 @@
             panel3.Size = new Size(694, 434);
             panel3.TabIndex = 2;
             panel3.Paint += panel3_Paint;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(549, 10);
+            button4.Name = "button4";
+            button4.Size = new Size(123, 93);
+            button4.TabIndex = 8;
+            button4.Text = "View Profile";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // Organizer_interface
             // 
@@ -178,5 +190,6 @@
         private Button button3;
         private Button button6;
         private PictureBox pictureBox1;
+        private Button button4;
     }
 }

@@ -74,8 +74,9 @@ namespace Evennt_management
             }
    
 
-
+            // Call the function to create event by adding the parameters into a event object then by calling it in organizer class
             Event e1 = new Event(date, time, place, price, quantity, name,organizer);
+
             Organizer org = new Organizer();
             org.CreateEvent(e1, this);
 

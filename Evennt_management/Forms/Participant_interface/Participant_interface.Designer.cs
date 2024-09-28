@@ -41,6 +41,7 @@
             label1 = new Label();
             bindingSource1 = new BindingSource(components);
             panel3 = new Panel();
+            button5 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -126,6 +127,7 @@
             // 
             panel2.BackColor = Color.IndianRed;
             panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(button5);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(221, 0);
@@ -165,6 +167,16 @@
             panel3.TabIndex = 1;
             panel3.Paint += panel3_Paint;
             // 
+            // button5
+            // 
+            button5.Location = new Point(523, 10);
+            button5.Name = "button5";
+            button5.Size = new Size(139, 93);
+            button5.TabIndex = 2;
+            button5.Text = "View Profile";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // Participant_interface
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -199,5 +211,6 @@
         private Button button3;
         private Button button4;
         private PictureBox pictureBox1;
+        private Button button5;
     }
 }

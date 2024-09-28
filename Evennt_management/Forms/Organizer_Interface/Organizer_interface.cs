@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,6 +77,13 @@ namespace Evennt_management
         {
             ViewBookings_interface veiwBookings_Interface = new ViewBookings_interface();
             veiwBookings_Interface.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var viewPersonal = new PersonalDetails(this);
+            viewPersonal.Show();
             this.Hide();
         }
     }

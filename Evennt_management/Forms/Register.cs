@@ -61,7 +61,7 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
-
+            // Getting the checked value of radio buttons 
             string selectedValue = "";
 
             if (radioButton1.Checked)
@@ -77,6 +77,7 @@ namespace Evennt_management
                 MessageBox.Show("All fields are required. Role cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            // Initiating variables
 
             string name = textBox1.Text;
             int age = Convert.ToInt32(maskedTextBox1.Text);
@@ -124,6 +125,8 @@ namespace Evennt_management
                 person.Register(person, this);
 
             }
+
+
 
 
 
@@ -186,6 +189,9 @@ namespace Evennt_management
             maskedTextBox1.Text = string.Empty;
         }
 
+        private void Register_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

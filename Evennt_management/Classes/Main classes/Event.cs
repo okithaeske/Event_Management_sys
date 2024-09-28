@@ -60,15 +60,17 @@ namespace Evennt_management
 
 
 
-        public void DisplayEvent() { }
+        // create an event calling the contoller class
         public void CreateEvent(Event e1, Form f1)     
         {
             EventController.CreateEvent(e1,f1);
         }
+        // update an event calling the contoller class
         public void UpdateEvent(Event e1,Form updateEvent) 
         {
             EventController.UpdateEvent(e1,updateEvent);
         }
+        // Delete an event calling the contoller class
         public void DeleteEvent(string Name,Form deleteEvent,string Targetform)
         {
             EventController.DeleteEvent(Name,deleteEvent,Targetform);

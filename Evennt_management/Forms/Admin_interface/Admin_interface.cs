@@ -73,7 +73,14 @@ namespace Evennt_management
         private void button4_Click(object sender, EventArgs e)
         {
             ViewBookingsadm_interface viewBookingsadm_Interface = new ViewBookingsadm_interface();
-            viewBookingsadm_Interface.Show();   
+            viewBookingsadm_Interface.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var ViewPersonal = new PersonalDetails(this);
+            ViewPersonal.Show();
             this.Hide();
         }
     }

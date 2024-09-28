@@ -85,8 +85,15 @@ namespace Evennt_management
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            Joined_events joined_Events = new Joined_events();  
+            Joined_events joined_Events = new Joined_events();
             joined_Events.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var viewpersonal = new PersonalDetails(this);
+            viewpersonal.Show();
             this.Hide();
         }
     }

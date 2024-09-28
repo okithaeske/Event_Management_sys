@@ -18,22 +18,26 @@ namespace Evennt_management
 
         public void JoinEvent() { }
 
-
+        // Register as participant
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person, f1);
         }
+
+        // Login as participant
         public override void login(string username, string password, Form f1)
         {
             PersonController.getUser(username, password, f1);
 
         }
 
+        // Join a event
         public void JoinEvent(string eventName, string pname, int age, int price)
         {
             EventController.RegisterPerson(eventName, pname, age, price);
         }
 
+        // Leave a joined event
         public void LeaveEvent(string eventName, Form leave)
         {
             EventController.LeaveEvent(eventName, leave);

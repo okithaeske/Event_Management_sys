@@ -14,6 +14,7 @@ namespace Evennt_management
         {
             
         }
+        // controller to get the regitser parameters
         public Admin(string username, string password):base(username,password)
         {
             
@@ -24,30 +25,33 @@ namespace Evennt_management
         }
         public Admin() {}
 
+        // Register function override
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person,f1);
         }
+        // Login function override
         public override void login(string username, string password, Form f1)
         {
             PersonController.getUser(username, password, f1);
         }
+        // admin remove event from database
         public void RemoveEvent(string username,Form deleteform ,string targetfrom) 
         {
             Event e1 = new Event();
             e1.DeleteEvent(username, deleteform, targetfrom);
         }
-
+        // Admin remove user from Event
         public void RemoveParticipant(string username,string TableName, Form kick) 
         {
             AdminController.RemoveParticipant(username,TableName,kick);
         }
-
+        // Admin remove user from database
         public void KickUser(string username)
         {
             AdminController.KickUser(username);
         }
-
+        // Admin view user information
         public static void ViewUserDetail(DataGridView dataGridView)
         {
             AdminController.VeiwUserInfo(dataGridView);

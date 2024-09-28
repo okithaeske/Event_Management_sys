@@ -18,33 +18,39 @@ namespace Evennt_management
         public Organizer(string name, int age, string role, string username, string password) : base(name, age, role, username, password){ }
         public Organizer(string username, string password):base(username,password) {}
 
+        // Register as Organizer
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person,f1);
         }
 
+        // Login as the Organizer
         public override void login(string username, string password, Form f1) 
         {
             PersonController.getUser(username, password, f1);
         
         }
 
+        // Create event 
         public void CreateEvent(Event e1,Form f1)
         {
             e1.CreateEvent(e1,f1);
         }
 
+        // update an createx event
         public void UpdateEvent(Event e1,Form updateEvent)
         {
             e1.UpdateEvent(e1,updateEvent);
         }
 
+        // Remove a created event
         public void RemoveEvent(string username, Form deleteform, string targetfrom)
         {
             Event e1 = new Event();
             e1.DeleteEvent(username, deleteform, targetfrom);
         }
 
+        // Display events created by the specific organizer
         public static void View_details(DataGridView dataGrid) 
         {
             OrganizerContoller.DisplayEventsByOrganizer(dataGrid);

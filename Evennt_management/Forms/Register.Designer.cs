@@ -220,6 +220,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Register";
             Text = "Form2";
+            Load += Register_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

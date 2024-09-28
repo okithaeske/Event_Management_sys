@@ -46,17 +46,18 @@ namespace Evennt_management
             this.username = username;
            
         }
-        public abstract void Register(Person person, Form f1);
 
+        // Abtsract classes for Register and Login functions
+        public abstract void Register(Person person, Form f1);
 
         public abstract void login(string username, string password, Form f1);
 
 
 
-
-        public static void DisplayPersonDetails()
+        // Display Your own details 
+        public static void DisplayPersonDetails(DataGridView datagrid)
         {
-
+            PersonController.VeiwPersonalData(datagrid);
         }
 
         public static void ChangeDetails()
@@ -64,6 +65,7 @@ namespace Evennt_management
 
         }
 
+        // View Events 
         public static void VeiwEvents(DataGridView dataGrid)
         {
             PersonController.VeiwData(dataGrid);
