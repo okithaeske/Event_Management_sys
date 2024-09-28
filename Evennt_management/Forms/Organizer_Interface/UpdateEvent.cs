@@ -33,6 +33,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // validations
 
             if
              (string.IsNullOrWhiteSpace(textBox6.Text) ||
@@ -45,6 +46,7 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            // initialising the variables
             DateTime dateTime = dateTimePicker1.Value;
             string nName = textBox6.Text;
             // Remove whitespaces
@@ -59,13 +61,11 @@ namespace Evennt_management
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 
-
+            // limitations
             if (newName.Length < 4)
             {
                 MessageBox.Show(" New Event Name must be at least 4 characters long.");
             }
-
-
             if (newplace.Length < 4)
             {
                 MessageBox.Show("Place must be at least 4 characters long.");
@@ -76,7 +76,7 @@ namespace Evennt_management
             }
 
 
-            //Database.UpdateEvent(newName, currentname, date, time, newplace, newprice, newquantity, this);
+            //calling the function 
             Event e1 = new Event(currentname, date, time, newplace, newprice, newquantity, newName);
             Organizer org1 = new Organizer();
             org1.UpdateEvent(e1, this);

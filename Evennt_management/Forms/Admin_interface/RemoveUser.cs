@@ -32,9 +32,11 @@ namespace Evennt_management.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // initialising variables
             string tableName = Organizer.TableName;
             string Name = textBox1.Text;
 
+            // calling fucntion through admin calss
             Admin ad1 = new Admin();
             ad1.RemoveParticipant(Name, tableName, this);
 
@@ -49,6 +51,11 @@ namespace Evennt_management.Forms
         {
             string tableName = Organizer.TableName;
             AdminController.VeiwBookingsData(tableName, dataGridView1);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -26,12 +26,14 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // initialising variables
             string ename = textBox1.Text;
             // Remove whitespaces
             string EventName = ename.Replace(" ", "");
-         
+
+            // calling the function through a object been created in admin class
             Admin a1 = new Admin();
-            a1.RemoveEvent(EventName,this, "admin");
+            a1.RemoveEvent(EventName, this, "admin");
 
         }
 
@@ -48,6 +50,11 @@ namespace Evennt_management
         private void RemoveEventadm_Load(object sender, EventArgs e)
         {
             Person.VeiwEvents(dataGridView1);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

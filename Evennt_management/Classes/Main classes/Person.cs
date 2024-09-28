@@ -1,4 +1,5 @@
 ﻿using Evennt_management.Classes.Controller_Classes;
+using System.Security.Cryptography;
 
 namespace Evennt_management
 {
@@ -60,9 +61,10 @@ namespace Evennt_management
             PersonController.VeiwPersonalData(datagrid);
         }
 
-        public static void ChangeDetails()
+        // change detailsmof the user
+        public static void ChangeDetails(string name, string age, Form f1)
         {
-
+            PersonController.ChangeUserDetails(name, age, f1);
         }
 
         // View Events 

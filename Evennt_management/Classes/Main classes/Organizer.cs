@@ -18,13 +18,13 @@ namespace Evennt_management
         public Organizer(string name, int age, string role, string username, string password) : base(name, age, role, username, password){ }
         public Organizer(string username, string password):base(username,password) {}
 
-        // Register as Organizer
+        // Register as Organizer through inheriting person class 
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person,f1);
         }
 
-        // Login as the Organizer
+        // Login function override inheritng person class
         public override void login(string username, string password, Form f1) 
         {
             PersonController.getUser(username, password, f1);

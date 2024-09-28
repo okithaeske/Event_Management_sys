@@ -26,14 +26,22 @@ namespace Evennt_management.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // intialising variables
             string tName = textBox1.Text;
             // Remove whitespaces
-            string tableName= tName.Replace(" ", "");
+            string tableName = tName.Replace(" ", "");
+
+            // Creating a participant objext to send the parameters and call the fucntions
             Participant p1 = new Participant();
             p1.LeaveEvent(tableName, this);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

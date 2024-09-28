@@ -48,6 +48,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Input validations
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
                string.IsNullOrWhiteSpace(textBox2.Text) ||
                string.IsNullOrWhiteSpace(textBox3.Text) ||
@@ -57,6 +58,7 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            // initialising variables
             string eName = textBox2.Text;
             // Remove whitespaces
             string eventName = eName.Replace(" ", "");
@@ -64,6 +66,7 @@ namespace Evennt_management
             int age = Convert.ToInt32(textBox3.Text);
             int price = Convert.ToInt32(textBox4.Text);
 
+            // calling the fucntion by creating a aprticipant object and sending parameters through the participant object
             Participant p1 = new Participant();
             p1.JoinEvent(eventName, pname, age, price);
 

@@ -18,13 +18,13 @@ namespace Evennt_management
 
         public void JoinEvent() { }
 
-        // Register as participant
+        // Register as participant through inheriting person class 
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person, f1);
         }
 
-        // Login as participant
+        // Login function override inheritng person class
         public override void login(string username, string password, Form f1)
         {
             PersonController.getUser(username, password, f1);

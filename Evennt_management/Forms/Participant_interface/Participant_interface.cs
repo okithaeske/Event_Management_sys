@@ -40,6 +40,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // If statement see whether user want to leave or not
             DialogResult result = MessageBox.Show("Do you want to logout", "logout", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {

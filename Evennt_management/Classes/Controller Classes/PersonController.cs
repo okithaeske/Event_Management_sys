@@ -182,7 +182,7 @@ namespace Evennt_management.Classes.Controller_Classes
 
         }
 
-
+        // view personal details of the user
         public static void VeiwPersonalData(DataGridView datagrid)
         {
             string user = UserSession.CurrentUser; // Get the stored User`s name
@@ -216,7 +216,7 @@ namespace Evennt_management.Classes.Controller_Classes
 
         }
 
-
+        // change personal details
         public static void ChangeUserDetails(string name, string age,Form f1)
         {
             string user = UserSession.CurrentUser; // Get the stored User`s name

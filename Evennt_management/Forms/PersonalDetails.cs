@@ -28,7 +28,9 @@ namespace Evennt_management.Forms
 
         private void PersonalDetails_Load(object sender, EventArgs e)
         {
-            PersonController.VeiwPersonalData(dataGridView1);
+            // calling function from person class
+            Person.DisplayPersonDetails(dataGridView1);
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

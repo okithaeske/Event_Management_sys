@@ -25,14 +25,15 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if
-           (string.IsNullOrWhiteSpace(textBox1.Text))
+            // validations
+            if(string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
             string username = textBox1.Text;
 
+            // calling the function
             Admin admin = new Admin();
             admin.KickUser(username);
 
@@ -43,6 +44,11 @@ namespace Evennt_management
             UserDetails userDetails = new UserDetails();
             userDetails.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

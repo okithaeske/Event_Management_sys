@@ -111,7 +111,7 @@ namespace Evennt_management
             }
 
 
-
+            // Calling function according to the role based on role the class differes
             if (role == "organizer")
             {
                 Person person = new Organizer(name, age, role, userName, password);

@@ -25,12 +25,12 @@ namespace Evennt_management
         }
         public Admin() {}
 
-        // Register function override
+        // Register as admin through inheriting person class 
         public override void Register(Person person, Form f1)
         {
             PersonController.register(person,f1);
         }
-        // Login function override
+        // Login function override inheritng person class
         public override void login(string username, string password, Form f1)
         {
             PersonController.getUser(username, password, f1);

@@ -36,6 +36,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // validating the inputs 
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
              string.IsNullOrWhiteSpace(dateTimePicker1.Text) ||
              string.IsNullOrWhiteSpace(textBox5.Text) ||
@@ -46,6 +47,7 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            // intialaising varibles 
             DateTime dateTime = dateTimePicker1.Value;
             string eventname = textBox1.Text;
             // Remove whitespaces
@@ -54,7 +56,7 @@ namespace Evennt_management
             string place = textBox5.Text;
             int price = Convert.ToInt32(maskedTextBox1.Text);
             int quantity = Convert.ToInt32(maskedTextBox2.Text);
-
+            // initialisins date and time separetlety
             string date = (dateTime.Date).ToString("yyy/MM/dd");
             string time = (dateTime.TimeOfDay).ToString(@"hh\:mm\:ss");
 

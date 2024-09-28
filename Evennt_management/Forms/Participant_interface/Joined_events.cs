@@ -26,6 +26,7 @@ namespace Evennt_management.Forms
 
         private void Joined_events_Load(object sender, EventArgs e)
         {
+            // Calling for the fucntion through the participant object
             Participant participant = new Participant();
             participant.ViewJoinedEvents(dataGridView1);
        

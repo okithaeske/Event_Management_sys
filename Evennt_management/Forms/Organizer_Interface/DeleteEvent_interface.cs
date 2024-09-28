@@ -28,16 +28,19 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // validations
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
+
+            // intialisng the variables
             string name = textBox1.Text;
             // Remove whitespaces
             string eventname = name.Replace(" ", "");
 
+            // calling the function
             Organizer o1 = new Organizer();
             o1.RemoveEvent(eventname,this, "CreatedEvent");
 

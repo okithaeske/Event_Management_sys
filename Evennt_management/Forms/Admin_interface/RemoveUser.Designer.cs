@@ -110,8 +110,9 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(513, 412);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // KickUser
+            // RemoveUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -120,7 +121,7 @@
             ClientSize = new Size(938, 531);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
-            Name = "KickUser";
+            Name = "RemoveUser";
             Text = "KickUser";
             Load += KickUser_Load;
             panel1.ResumeLayout(false);

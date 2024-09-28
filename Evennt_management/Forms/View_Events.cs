@@ -32,6 +32,7 @@ namespace Evennt_management
 
         private void Veiw_Events_Load(object sender, EventArgs e)
         {
+            // Calling fucntion from person class
             Person.VeiwEvents(dataGridView1);
         }
     }

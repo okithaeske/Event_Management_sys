@@ -46,7 +46,7 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // input validations
             if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text))
             {
@@ -54,11 +54,14 @@ namespace Evennt_management
                 return; // Exit the method without further processing
             }
 
+            // assigning variables
             string uname = textBox1.Text;
             string password = textBox2.Text;
 
+            // function to get the specific role of the username
             string role = Database.getRole(uname);
 
+            // Calling the function based on the role and using Ploymorphysm
             if (role == "admin")
             {
                 Person person = new Admin(uname, password);

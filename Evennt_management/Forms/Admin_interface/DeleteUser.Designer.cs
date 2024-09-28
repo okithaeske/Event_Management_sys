@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeleteUser));
             panel1 = new Panel();
+            linkLabel1 = new LinkLabel();
             button1 = new Button();
             textBox1 = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,6 +50,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(662, 388);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(21, 345);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(40, 20);
+            linkLabel1.TabIndex = 4;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Back";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // button1
             // 
@@ -88,17 +100,6 @@
             label1.Size = new Size(205, 46);
             label1.TabIndex = 0;
             label1.Text = "Delete User";
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(21, 345);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(40, 20);
-            linkLabel1.TabIndex = 4;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Back";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // DeleteUser
             // 

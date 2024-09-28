@@ -32,17 +32,20 @@ namespace Evennt_management.Forms
                 return; // Exit the method without further processing
             }
 
-
+            // assigning variables
             string name = textBox1.Text;
             string age = textBox2.Text;
 
-
-            PersonController.ChangeUserDetails(name, age, this);
-
+            // calling function from person class
+            Person.ChangeDetails(name, age,this);
+            
+            // limitations
             if (name.Length < 3)
             {
                 MessageBox.Show("Name must be at least 3 characters long.");
             }
+
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
