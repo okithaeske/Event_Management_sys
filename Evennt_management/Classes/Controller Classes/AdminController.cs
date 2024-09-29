@@ -210,6 +210,7 @@ namespace Evennt_management.Classes.Controller_Classes
                 try
                 {
                     connection.Open();
+
                     using (MySqlCommand com = new MySqlCommand(query, connection))
                     {
                         MySqlDataAdapter da = new MySqlDataAdapter(com);
