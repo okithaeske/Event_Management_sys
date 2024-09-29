@@ -38,9 +38,20 @@ namespace Evennt_management.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RemoveUser kickUser = new RemoveUser();
-            kickUser.Show();
-            this.Hide();
+            if (string.IsNullOrEmpty(textBox1.Text)) 
+            {
+                MessageBox.Show("Enter a Event name");
+            }
+            else
+            {
+                RemoveUser removeUser = new RemoveUser();
+                removeUser.Show();
+                this.Hide();
+            }
+
+
+        
+
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -69,6 +80,7 @@ namespace Evennt_management.Forms
             string tName = textBox1.Text;
             // Remove whitespaces
             string tableName = tName.Replace(" ", "");
+            Organizer.TableName = tableName;
 
             Admin o1 = new Admin();
             Validations OrgAdmInterface = new Admin();

@@ -66,6 +66,13 @@ namespace Evennt_management
             int age = Convert.ToInt32(textBox3.Text);
             int price = Convert.ToInt32(textBox4.Text);
 
+            // limitations
+            if (age <= 12)
+            {
+                MessageBox.Show("Age must be greater than 12.");
+                return;
+            }
+
             // calling the fucntion by creating a aprticipant object and sending parameters through the participant object
             Participant p1 = new Participant();
             p1.JoinEvent(eventName, pname, age, price);

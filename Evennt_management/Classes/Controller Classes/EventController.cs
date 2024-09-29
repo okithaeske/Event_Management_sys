@@ -286,6 +286,9 @@ namespace Evennt_management.Classes.Controller_Classes
             string totalRegistrationsQuery = $"SELECT COUNT(*) FROM `{table}`";
             string eventQuantityQuery = "SELECT Quantity FROM createevent WHERE LOWER(Name) = @eventName";
 
+            // Get the event's price
+            string eventPriceQuery = "SELECT Price FROM createevent WHERE LOWER(Name) = @eventName";
+
 
             using (MySqlConnection connection = new MySqlConnection(Database.connectionString))
             {
@@ -322,6 +325,20 @@ namespace Evennt_management.Classes.Controller_Classes
                     if (totalRegistrations >= eventQuantity)
                     {
                         MessageBox.Show("Event is fully booked. No more registrations are allowed.");
+                        return;
+                    }
+                    // Step 5: Retrieve the event's price from the createevent table
+                    int eventPrice = 0;
+                    using (MySqlCommand eventPriceCmd = new MySqlCommand(eventPriceQuery, connection))
+                    {
+                        eventPriceCmd.Parameters.AddWithValue("@eventName", table.ToLower());
+                        eventPrice = Convert.ToInt32(eventPriceCmd.ExecuteScalar());
+                    }
+
+                    // Step 6: Validate the provided price against the event's price
+                    if (price != eventPrice)
+                    {
+                        MessageBox.Show($"The price for this event is {eventPrice}. Please provide the correct price.");
                         return;
                     }
 
