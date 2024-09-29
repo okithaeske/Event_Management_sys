@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evennt_management.Classes.Controller_Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,24 +32,27 @@ namespace Evennt_management.Forms
 
         private void ViewBookingsadm_interface_Load(object sender, EventArgs e)
         {
-            Organizer.View_details(dataGridView2);
+            // shows the events created
+            Person.VeiwEvents(dataGridView2);
 
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text)) 
+
+            string tableName = Organizer.TableName;
+            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(tableName)) 
             {
-                MessageBox.Show("Enter a Event name");
+                MessageBox.Show("Enter a valid Event name");
             }
             else
-            {
+            {   
                 RemoveUser removeUser = new RemoveUser();
                 removeUser.Show();
                 this.Hide();
             }
-
+            
 
         
 
@@ -82,9 +86,18 @@ namespace Evennt_management.Forms
             string tableName = tName.Replace(" ", "");
             Organizer.TableName = tableName;
 
-            Admin o1 = new Admin();
-            Validations OrgAdmInterface = new Admin();
-            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                // calling function through interface
+                Admin o1 = new Admin();
+                Validations OrgAdmInterface = new Admin();
+                OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid event name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
 
         }
 

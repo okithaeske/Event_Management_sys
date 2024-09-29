@@ -47,17 +47,18 @@ namespace Evennt_management
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // validations
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 MessageBox.Show("All fields are required. Please fill in all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit the method without further processing
             }
+            //initialising variables
             string tName = textBox1.Text;
             // Remove whitespaces
             string tableName = tName.Replace(" ", "");
 
-            // calling for the display table of participants
+            // calling function through interface
             Organizer o1 = new Organizer();
             Validations OrgAdmInterface = new Organizer();
             OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);

@@ -39,6 +39,8 @@ namespace Evennt_management.Forms
             // calling fucntion through admin calss
             Admin ad1 = new Admin();
             ad1.RemoveParticipant(Name, tableName, this);
+          
+         
 
         }
 
@@ -50,7 +52,15 @@ namespace Evennt_management.Forms
         private void KickUser_Load(object sender, EventArgs e)
         {
             string tableName = Organizer.TableName;
-            AdminController.VeiwBookingsData(tableName, dataGridView1);
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                AdminController.VeiwBookingsData(tableName, dataGridView1);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid table name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+          
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -20,6 +20,7 @@ namespace Evennt_management
         public Organizer(string name, int age, string role, string username, string password) : base(name, age, role, username, password){ }
         // inheritance from peron class for login
         public Organizer(string username, string password):base(username,password) {}
+        
 
         // Register as Organizer through inheriting person class 
         public override void Register(Person person, Form f1)
@@ -40,7 +41,7 @@ namespace Evennt_management
             e1.CreateEvent(e1,f1);
         }
 
-        // update an createx event
+        // update an create event
         public void UpdateEvent(Event e1,Form updateEvent)
         {
             e1.UpdateEvent(e1,updateEvent);
