@@ -39,11 +39,7 @@ namespace Evennt_management.Forms
             // calling function from person class
             Person.ChangeDetails(name, age,this);
             
-            // limitations
-            if (name.Length < 3)
-            {
-                MessageBox.Show("Name must be at least 3 characters long.");
-            }
+       
 
 
         }

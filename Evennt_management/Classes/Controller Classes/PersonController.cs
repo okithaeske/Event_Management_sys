@@ -245,8 +245,12 @@ namespace Evennt_management.Classes.Controller_Classes
                         {
                             MessageBox.Show("Age must be greater than 12.");
                         }
-                        DetailsList.Add("Age = @newAge");
-                        Cmd.Parameters.AddWithValue("@newage", Age);
+                        else
+                        {
+                            DetailsList.Add("Age = @newAge");
+                            Cmd.Parameters.AddWithValue("@newage", Age);
+                        }
+                       
                     }
 
 
