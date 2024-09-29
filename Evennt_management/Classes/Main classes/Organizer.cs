@@ -14,8 +14,11 @@ namespace Evennt_management
     {
      
         public static string TableName { get; set; }
+        // empty constructor
         public Organizer() {}
+        // inheritance from peron class for regitser
         public Organizer(string name, int age, string role, string username, string password) : base(name, age, role, username, password){ }
+        // inheritance from peron class for login
         public Organizer(string username, string password):base(username,password) {}
 
         // Register as Organizer through inheriting person class 
@@ -61,6 +64,6 @@ namespace Evennt_management
 
 
 
-        public void Change_details() { }
+   
     }
 }

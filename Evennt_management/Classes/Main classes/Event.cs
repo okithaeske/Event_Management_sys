@@ -75,7 +75,23 @@ namespace Evennt_management
         {
             EventController.DeleteEvent(Name,deleteEvent,Targetform);
         }
-        
+        // join event
+        public void JoinEvent(string eventName, string pname, int age, int price)
+        {
+            EventController.RegisterPerson(eventName, pname, age, price);
+        }
+
+        // Leave a joined event
+        public void LeaveEvent(string eventName, Form leave)
+        {
+            EventController.LeaveEvent(eventName, leave);
+        }
+
+        public void ViewJoinedEvents(DataGridView dataGridView)
+        {
+            ParticipantController.GetRegisteredTables(dataGridView);
+        }
+
 
 
     }

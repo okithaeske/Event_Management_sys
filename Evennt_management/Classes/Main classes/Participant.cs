@@ -5,15 +5,16 @@ namespace Evennt_management
 {
     internal class Participant : Person, Validations
     {
-
+        // inheritance from peron class for regitser
         public Participant(string name, int age, string role, string username, string password) : base(name, age, role, username, password)
         {
         }
+        // empty constructor
         public Participant()
         {
 
         }
-
+        // inheritance from peron class for login
         public Participant(string username, string password) : base(username, password) { }
 
         public void JoinEvent() { }
@@ -31,21 +32,26 @@ namespace Evennt_management
 
         }
 
-        // Join a event
+        // Join a event associated with event class
         public void JoinEvent(string eventName, string pname, int age, int price)
         {
-            EventController.RegisterPerson(eventName, pname, age, price);
+            Event e1 = new Event();
+            e1.JoinEvent(eventName, pname, age, price);
+            
         }
 
-        // Leave a joined event
+        // Leave a joined event associated with event class
         public void LeaveEvent(string eventName, Form leave)
         {
-            EventController.LeaveEvent(eventName, leave);
+            Event e1 = new Event();
+            e1.LeaveEvent(eventName, leave);
+            
         }
-
+        // view joined event  associated with event class
         public void ViewJoinedEvents(DataGridView dataGridView)
         {
-            ParticipantController.GetRegisteredTables(dataGridView);
+            Event e1 = new Event();
+            e1.ViewJoinedEvents(dataGridView);
         }
 
 
