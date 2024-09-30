@@ -78,9 +78,10 @@
             // 
             // textBox4
             // 
+            textBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             textBox4.Location = new Point(201, 317);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(228, 27);
+            textBox4.Size = new Size(228, 30);
             textBox4.TabIndex = 9;
             textBox4.TextChanged += textBox4_TextChanged;
             // 
@@ -104,9 +105,10 @@
             // 
             // textBox1
             // 
+            textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(201, 201);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(228, 27);
+            textBox1.Size = new Size(228, 30);
             textBox1.TabIndex = 6;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -134,11 +136,11 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic);
-            label3.Location = new Point(44, 201);
+            label3.Location = new Point(49, 204);
             label3.Name = "label3";
-            label3.Size = new Size(151, 23);
+            label3.Size = new Size(89, 23);
             label3.TabIndex = 3;
-            label3.Text = "Participant Name";
+            label3.Text = "Username";
             // 
             // label2
             // 
