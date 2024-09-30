@@ -72,7 +72,7 @@
             button1.Name = "button1";
             button1.Size = new Size(167, 67);
             button1.TabIndex = 2;
-            button1.Text = "Delete User";
+            button1.Text = "Remove User";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -114,7 +114,7 @@
             label1.Name = "label1";
             label1.Size = new Size(225, 41);
             label1.TabIndex = 8;
-            label1.Text = "Veiw Bookings";
+            label1.Text = "View Bookings";
             // 
             // label2
             // 

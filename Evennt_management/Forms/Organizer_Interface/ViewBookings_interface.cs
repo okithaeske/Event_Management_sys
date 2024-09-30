@@ -58,10 +58,18 @@ namespace Evennt_management
             // Remove whitespaces
             string tableName = tName.Replace(" ", "");
 
-            // calling function through interface
-            Organizer o1 = new Organizer();
-            Validations OrgAdmInterface = new Organizer();
-            OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                // calling function through interface
+                Organizer o1 = new Organizer();
+                Validations OrgAdmInterface = new Organizer();
+                OrgAdmInterface.VeiwBookingsData(tableName, dataGridView1);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid event name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+          
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

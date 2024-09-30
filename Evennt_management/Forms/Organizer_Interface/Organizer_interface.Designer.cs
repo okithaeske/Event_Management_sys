@@ -38,9 +38,9 @@
             button3 = new Button();
             button6 = new Button();
             panel2 = new Panel();
+            button4 = new Button();
             label1 = new Label();
             panel3 = new Panel();
-            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -79,7 +79,7 @@
             button1.Name = "button1";
             button1.Size = new Size(148, 66);
             button1.TabIndex = 1;
-            button1.Text = "Veiw Events";
+            button1.Text = "View Events";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -101,7 +101,7 @@
             button3.Name = "button3";
             button3.Size = new Size(148, 66);
             button3.TabIndex = 3;
-            button3.Text = "Veiw Created Event";
+            button3.Text = "View Created Event";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -128,6 +128,16 @@
             panel2.Size = new Size(694, 125);
             panel2.TabIndex = 1;
             // 
+            // button4
+            // 
+            button4.Location = new Point(549, 10);
+            button4.Name = "button4";
+            button4.Size = new Size(123, 93);
+            button4.TabIndex = 8;
+            button4.Text = "View Profile";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -150,16 +160,6 @@
             panel3.Size = new Size(694, 434);
             panel3.TabIndex = 2;
             panel3.Paint += panel3_Paint;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(549, 10);
-            button4.Name = "button4";
-            button4.Size = new Size(123, 93);
-            button4.TabIndex = 8;
-            button4.Text = "View Profile";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
             // 
             // Organizer_interface
             // 

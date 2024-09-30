@@ -113,7 +113,7 @@
             label1.Name = "label1";
             label1.Size = new Size(225, 41);
             label1.TabIndex = 4;
-            label1.Text = "Veiw Bookings";
+            label1.Text = "View Bookings";
             label1.Click += label1_Click;
             // 
             // dataGridView2
